@@ -129,7 +129,7 @@ public final class PaletteScrollBar extends ScrollBar {
 				PointList innerPoints = transpose(down ? INNER_DOWN_TRIANGLE : INNER_UP_TRIANGLE);
 				g.setBackgroundColor(PaletteColorUtil.WIDGET_LIST_BACKGROUND);
 				g.fillPolygon(outerPoints);
-				g.setBackgroundColor(PaletteColorUtil.WIDGET_DARK_SHADOW);
+				g.setBackgroundColor(colorProvider.getButtonDarkest());
 				g.fillPolygon(innerPoints);
 				g.translate(getLocation().getNegated());
 			}

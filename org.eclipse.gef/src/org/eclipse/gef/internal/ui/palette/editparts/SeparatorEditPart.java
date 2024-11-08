@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2010 IBM Corporation and others.
+ * Copyright (c) 2000, 2024 IBM Corporation and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -62,13 +62,13 @@ public class SeparatorEditPart extends PaletteEditPart {
 	 *
 	 * @author Pratik Shah
 	 */
-	static class SeparatorFigure extends Figure {
+	class SeparatorFigure extends Figure {
 		/**
 		 * @see org.eclipse.draw2d.IFigure#getPreferredSize(int, int)
 		 */
 		@Override
 		public Dimension getPreferredSize(int wHint, int hHint) {
-			if (getBackgroundColor().equals(PaletteColorUtil.WIDGET_BACKGROUND)) {
+			if (getBackgroundColor().equals(getColorProvider().getButton())) {
 				return new Dimension(wHint, 4);
 			}
 			return new Dimension(wHint, 5);
@@ -84,10 +84,10 @@ public class SeparatorEditPart extends PaletteEditPart {
 		protected void paintFigure(Graphics g) {
 			Rectangle r = getBounds().getShrinked(CROP);
 			if (getBackgroundColor().equals(PaletteColorUtil.WIDGET_LIST_BACKGROUND)) {
-				g.setForegroundColor(PaletteColorUtil.WIDGET_NORMAL_SHADOW);
+				g.setForegroundColor(getColorProvider().getButtonDarker());
 				g.drawLine(r.getLeft(), r.getRight());
 			} else {
-				g.setForegroundColor(PaletteColorUtil.WIDGET_NORMAL_SHADOW);
+				g.setForegroundColor(getColorProvider().getButtonDarker());
 				g.drawLine(r.getBottomLeft(), r.getTopLeft());
 				g.drawLine(r.getTopLeft(), r.getTopRight());
 

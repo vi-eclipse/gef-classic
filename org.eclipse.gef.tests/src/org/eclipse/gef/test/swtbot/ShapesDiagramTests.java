@@ -73,6 +73,9 @@ public class ShapesDiagramTests extends AbstractSWTBotEditorTests {
 
 		assertEquals(colorProvider.getListHoverBackgroundColor(), ColorConstants.cyan);
 		assertEquals(colorProvider.getListSelectedBackgroundColor(), ColorConstants.darkGreen);
+		assertEquals(colorProvider.getButton(), ColorConstants.lightGray);
+		assertEquals(colorProvider.getButtonDarker(), ColorConstants.gray);
+		assertEquals(colorProvider.getButtonDarkest(), ColorConstants.darkGray);
 	}
 
 	@Override

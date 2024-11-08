@@ -42,7 +42,8 @@ public class ColorProviderHandler {
 		} else {
 			paletteViewer.setColorProvider(null);
 		}
-		paletteViewer.getControl().redraw();
+		// Redraw the FlyoutPaletteComposite
+		paletteViewer.getControl().getParent().getParent().redraw();
 	}
 
 	@CanExecute

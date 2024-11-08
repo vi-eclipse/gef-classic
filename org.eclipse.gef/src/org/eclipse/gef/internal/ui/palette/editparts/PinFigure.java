@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008, 2010 IBM Corporation and others.
+ * Copyright (c) 2008, 2024 IBM Corporation and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,11 +13,8 @@
 
 package org.eclipse.gef.internal.ui.palette.editparts;
 
-import org.eclipse.swt.graphics.Color;
-
 import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.ButtonModel;
-import org.eclipse.draw2d.FigureUtilities;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.ImageFigure;
 import org.eclipse.draw2d.Label;
@@ -25,7 +22,7 @@ import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.Toggle;
 
 import org.eclipse.gef.internal.InternalImages;
-import org.eclipse.gef.internal.ui.palette.PaletteColorUtil;
+import org.eclipse.gef.ui.palette.PaletteColorProvider;
 import org.eclipse.gef.ui.palette.PaletteMessages;
 
 /**
@@ -36,13 +33,12 @@ import org.eclipse.gef.ui.palette.PaletteMessages;
  */
 public class PinFigure extends Toggle {
 
-	private static final Color PIN_HOTSPOT_COLOR = FigureUtilities.mixColors(PaletteColorUtil.WIDGET_LIST_BACKGROUND,
-			PaletteColorUtil.WIDGET_NORMAL_SHADOW, 0.60);
-
 	private static final Border TOOLTIP_BORDER = new MarginBorder(0, 2, 1, 0);
+	private final PaletteColorProvider colorProvider;
 
-	public PinFigure() {
+	public PinFigure(PaletteColorProvider colorProvider) {
 		super(new ImageFigure(InternalImages.get(InternalImages.IMG_UNPINNED)));
+		this.colorProvider = colorProvider;
 		setRolloverEnabled(true);
 		setRequestFocusEnabled(false);
 		Label tooltip = new Label(PaletteMessages.TOOLTIP_PIN_FIGURE);
@@ -74,7 +70,7 @@ public class PinFigure extends Toggle {
 
 		ButtonModel model = getModel();
 		if (isRolloverEnabled() && model.isMouseOver()) {
-			graphics.setBackgroundColor(PIN_HOTSPOT_COLOR);
+			graphics.setBackgroundColor(colorProvider.getHotspotColor());
 			graphics.fillRoundRectangle(getClientArea().getCopy().shrink(1, 1), 3, 3);
 		}
 	}

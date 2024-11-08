@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008, 2010 IBM Corporation and others.
+ * Copyright (c) 2008, 2024 IBM Corporation and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -34,6 +34,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 
 import org.eclipse.gef.internal.ui.palette.PaletteColorUtil;
 import org.eclipse.gef.internal.ui.palette.editparts.ToolEntryEditPart.ToolEntryToggle;
+import org.eclipse.gef.ui.palette.PaletteColorProvider;
 import org.eclipse.gef.ui.palette.PaletteViewerPreferences;
 
 /**
@@ -109,7 +110,7 @@ public class PinnablePaletteStackFigure extends Figure {
 				points[7] = middleY - 2;
 			}
 
-			graphics.setBackgroundColor(PaletteColorUtil.WIDGET_DARK_SHADOW);
+			graphics.setBackgroundColor(colorProvider.getButtonDarkest());
 			graphics.fillPolygon(points);
 
 			graphics.translate(getLocation().getNegated());
@@ -289,14 +290,18 @@ public class PinnablePaletteStackFigure extends Figure {
 
 	private final Rectangle headerBoundsLayoutHint = new Rectangle();
 
-	public PinnablePaletteStackFigure() {
+	private final PaletteColorProvider colorProvider;
+
+	public PinnablePaletteStackFigure(PaletteColorProvider colorProvider) {
+		this.colorProvider = colorProvider;
+
 		arrowFigure = new RolloverArrow();
 		arrowFigure.addChangeListener(clickableArrowListener);
 
 		headerFigure = new Figure();
 		headerFigure.add(arrowFigure);
 
-		pinFigure = new PinFigure();
+		pinFigure = new PinFigure(colorProvider);
 		pinFigure.setBorder(new MarginBorder(0, 0, 0, 2));
 
 		expandablePane = new Figure();
@@ -362,10 +367,10 @@ public class PinnablePaletteStackFigure extends Figure {
 			points.addPoint(pinAreaBounds.getTopLeft().getTranslated(0, 0));
 			points.addPoint(headerBounds.getBottomLeft());
 
-			g.setForegroundColor(PaletteColorUtil.WIDGET_BACKGROUND_NORMAL_SHADOW_40);
+			g.setForegroundColor(colorProvider.getButtonDarker(0.4));
 			g.drawPolygon(points);
 
-			g.setForegroundColor(PaletteColorUtil.WIDGET_BACKGROUND_NORMAL_SHADOW_80);
+			g.setForegroundColor(colorProvider.getButtonDarker(0.8));
 			Point pt = headerBounds.getTopLeft().getTranslated(0, 1);
 			g.drawPoint(pt.x, pt.y);
 			pt = headerBounds.getTopLeft().getTranslated(1, 0);
@@ -381,14 +386,14 @@ public class PinnablePaletteStackFigure extends Figure {
 			g.fillRectangle(headerBounds);
 
 			// draw top and bottom border lines of header figure
-			g.setForegroundColor(PaletteColorUtil.WIDGET_BACKGROUND_NORMAL_SHADOW_65);
+			g.setForegroundColor(colorProvider.getButtonDarker(0.65));
 			g.drawLine(headerBounds.getTopLeft(), headerBounds.getTopRight());
 			g.setForegroundColor(PaletteColorUtil.WIDGET_LIST_BACKGROUND);
 			g.drawLine(headerBounds.getBottomLeft().getTranslated(0, -2),
 					headerBounds.getBottomRight().getTranslated(0, -2));
 
 			// draw bottom border line of expandable pane
-			g.setForegroundColor(PaletteColorUtil.WIDGET_BACKGROUND_NORMAL_SHADOW_65);
+			g.setForegroundColor(colorProvider.getButtonDarker(0.65));
 			g.drawLine(paneBounds.getBottomLeft().getTranslated(0, -1),
 					paneBounds.getBottomRight().getTranslated(0, -1));
 		}

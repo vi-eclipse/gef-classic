@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008, 2010 IBM Corporation and others.
+ * Copyright (c) 2008, 2024 IBM Corporation and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -52,14 +52,14 @@ public class ToolbarEditPart extends GroupEditPart {
 				graphics.drawLine(getBounds().getTopLeft(), getBounds().getTopRight());
 
 				// draw bottom border
-				graphics.setForegroundColor(PaletteColorUtil.WIDGET_BACKGROUND_NORMAL_SHADOW_70);
+				graphics.setForegroundColor(getColorProvider().getButtonDarker(0.7));
 				graphics.drawLine(getBounds().getBottomLeft().getTranslated(0, -1),
 						getBounds().getBottomRight().getTranslated(0, -1));
 			}
 
 		};
 		figure.setOpaque(true);
-		figure.setBackgroundColor(PaletteColorUtil.WIDGET_BACKGROUND);
+		figure.setBackgroundColor(getColorProvider().getButton());
 		figure.setBorder(new MarginBorder(2, 1, 1, 1));
 
 		return figure;

@@ -28,7 +28,6 @@ import org.eclipse.draw2d.Clickable;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.CompoundBorder;
 import org.eclipse.draw2d.Figure;
-import org.eclipse.draw2d.FigureUtilities;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
@@ -54,10 +53,6 @@ import org.eclipse.gef.ui.palette.editparts.PaletteToolbarLayout;
  * @author Pratik Shah
  */
 public class DrawerFigure extends Figure {
-
-	/** Foreground color constant **/
-	protected static final Color FG_COLOR = FigureUtilities.mixColors(PaletteColorUtil.WIDGET_NORMAL_SHADOW,
-			PaletteColorUtil.WIDGET_BACKGROUND);
 
 	/** Scrollpane border constant for icon and column layout mode **/
 	protected static final Border SCROLL_PANE_BORDER = new MarginBorder(2, 2, 2, 2);
@@ -114,13 +109,13 @@ public class DrawerFigure extends Figure {
 			r.setBounds(figure.getBounds()).shrink(insets);
 
 			// draw top border of drawer figure
-			g.setForegroundColor(PaletteColorUtil.WIDGET_NORMAL_SHADOW);
+			g.setForegroundColor(colorProvider.getButtonDarker());
 			g.drawLine(r.getTopLeft(), r.getTopRight());
 			g.setForegroundColor(ColorConstants.listBackground);
 			g.drawLine(r.getTopLeft().getTranslated(0, 1), r.getTopRight().getTranslated(0, 1));
 			r.shrink(new Insets(2, 0, 0, 0));
 			if (isExpanded()) {
-				g.setForegroundColor(PaletteColorUtil.WIDGET_BACKGROUND_NORMAL_SHADOW_65);
+				g.setForegroundColor(colorProvider.getButtonDarker(0.65));
 				g.drawLine(r.getLocation(), r.getTopRight());
 				r.shrink(new Insets(1, 0, 0, 0));
 			}
@@ -172,7 +167,7 @@ public class DrawerFigure extends Figure {
 		drawerLabel = new Label();
 		drawerLabel.setLabelAlignment(Label.LEFT);
 
-		pinFigure = new PinFigure();
+		pinFigure = new PinFigure(colorProvider);
 
 		title.add(pinFigure, BorderLayout.RIGHT);
 		title.add(drawerLabel, BorderLayout.CENTER);
@@ -218,8 +213,8 @@ public class DrawerFigure extends Figure {
 			g.fillRectangle(rect);
 		} else if (collapseToggle.getModel().isMouseOver()) {
 			Color color1 = PaletteColorUtil.WIDGET_BACKGROUND_LIST_BACKGROUND_60;
-			Color color2 = PaletteColorUtil.WIDGET_BACKGROUND_NORMAL_SHADOW_90;
-			Color color3 = PaletteColorUtil.WIDGET_BACKGROUND_NORMAL_SHADOW_95;
+			Color color2 = colorProvider.getButtonDarker(0.9);
+			Color color3 = colorProvider.getButtonDarker(0.95);
 			Color color4 = PaletteColorUtil.WIDGET_BACKGROUND_LIST_BACKGROUND_90;
 
 			g.setForegroundColor(color1);
@@ -235,7 +230,7 @@ public class DrawerFigure extends Figure {
 			g.fillGradient(rect.x, rect.bottom() - 2, rect.width, 2, true);
 		} else {
 			g.setForegroundColor(PaletteColorUtil.WIDGET_BACKGROUND_LIST_BACKGROUND_85);
-			g.setBackgroundColor(PaletteColorUtil.WIDGET_BACKGROUND_NORMAL_SHADOW_45);
+			g.setBackgroundColor(colorProvider.getButtonDarker(0.45));
 			g.fillGradient(rect, true);
 		}
 	}

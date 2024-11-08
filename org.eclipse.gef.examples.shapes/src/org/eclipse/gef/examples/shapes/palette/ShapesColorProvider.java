@@ -33,4 +33,19 @@ public class ShapesColorProvider extends PaletteColorProvider {
 	public Color getListHoverBackgroundColor() {
 		return ColorConstants.cyan;
 	}
+
+	@Override
+	public Color getButton() {
+		return ColorConstants.lightGray;
+	}
+
+	@Override
+	public Color getButtonDarker() {
+		return ColorConstants.gray;
+	}
+
+	@Override
+	public Color getButtonDarkest() {
+		return ColorConstants.darkGray;
+	}
 }

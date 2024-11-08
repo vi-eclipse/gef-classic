@@ -70,6 +70,7 @@ import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.Button;
 import org.eclipse.draw2d.ButtonBorder;
 import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.ColorProvider;
 import org.eclipse.draw2d.Cursors;
 import org.eclipse.draw2d.FocusEvent;
 import org.eclipse.draw2d.FocusListener;
@@ -652,6 +653,10 @@ public class FlyoutPaletteComposite extends Composite {
 		}
 	}
 
+	private ColorProvider getColorProvider() {
+		return pViewer != null ? pViewer.getColorProvider() : PaletteColorProvider.INSTANCE;
+	}
+
 	/**
 	 * FlyoutPreferences is used to save/load the preferences for the flyout
 	 * palette.
@@ -786,19 +791,19 @@ public class FlyoutPaletteComposite extends Composite {
 		private void paintSash(GC gc) {
 			Rectangle bounds = getBounds();
 			if (isInState(STATE_PINNED_OPEN)) {
-				gc.setBackground(PaletteColorUtil.WIDGET_BACKGROUND);
+				gc.setBackground(getColorProvider().getButton());
 				gc.fillRectangle(0, 0, bounds.width, bounds.height);
 
 				gc.setForeground(PaletteColorUtil.WIDGET_LIST_BACKGROUND);
 				gc.drawLine(0, 0, bounds.width, 0);
-				gc.setForeground(PaletteColorUtil.WIDGET_NORMAL_SHADOW);
+				gc.setForeground(getColorProvider().getButtonDarker());
 				gc.drawLine(0, bounds.height - 1, bounds.width - 1, bounds.height - 1);
 				gc.setForeground(PaletteColorUtil.WIDGET_LIST_BACKGROUND);
 				gc.drawLine(0, 0, 0, bounds.height);
-				gc.setForeground(PaletteColorUtil.WIDGET_NORMAL_SHADOW);
+				gc.setForeground(getColorProvider().getButtonDarker());
 				gc.drawLine(bounds.width - 1, 0, bounds.width - 1, bounds.height - 1);
 			} else {
-				gc.setForeground(PaletteColorUtil.WIDGET_NORMAL_SHADOW);
+				gc.setForeground(getColorProvider().getButtonDarker());
 				gc.drawLine(0, 0, 0, bounds.height);
 				gc.drawLine(bounds.width - 1, 0, bounds.width - 1, bounds.height);
 
@@ -1091,7 +1096,7 @@ public class FlyoutPaletteComposite extends Composite {
 		}
 	}
 
-	private static class TitleLabel extends Label {
+	private class TitleLabel extends Label {
 		protected static final Border BORDER = new MarginBorder(4, 3, 4, 3);
 		protected static final Border TOOL_TIP_BORDER = new MarginBorder(0, 2, 0, 2);
 
@@ -1121,11 +1126,11 @@ public class FlyoutPaletteComposite extends Composite {
 			org.eclipse.draw2d.geometry.Rectangle r = org.eclipse.draw2d.geometry.Rectangle.SINGLETON;
 			r.setBounds(getBounds());
 			graphics.setForegroundColor(PaletteColorUtil.WIDGET_LIST_BACKGROUND);
-			graphics.setBackgroundColor(PaletteColorUtil.WIDGET_BACKGROUND);
+			graphics.setBackgroundColor(getColorProvider().getButton());
 			graphics.fillGradient(r, true);
 
 			// draw bottom border
-			graphics.setForegroundColor(PaletteColorUtil.WIDGET_NORMAL_SHADOW);
+			graphics.setForegroundColor(getColorProvider().getButtonDarker());
 			graphics.drawLine(r.getBottomLeft().getTranslated(0, -1), r.getBottomRight().getTranslated(0, -1));
 
 			graphics.popState();
@@ -1251,7 +1256,7 @@ public class FlyoutPaletteComposite extends Composite {
 				triangle = new Triangle();
 				triangle.setOutline(true);
 				triangle.setBackgroundColor(PaletteColorUtil.WIDGET_LIST_BACKGROUND);
-				triangle.setForegroundColor(PaletteColorUtil.WIDGET_DARK_SHADOW);
+				triangle.setForegroundColor(getColorProvider().getButtonDarkest());
 				setContents(triangle);
 			}
 
@@ -1279,12 +1284,12 @@ public class FlyoutPaletteComposite extends Composite {
 				org.eclipse.draw2d.geometry.Rectangle r = org.eclipse.draw2d.geometry.Rectangle.SINGLETON;
 				r.setBounds(getBounds());
 				graphics.setForegroundColor(PaletteColorUtil.WIDGET_LIST_BACKGROUND);
-				graphics.setBackgroundColor(PaletteColorUtil.WIDGET_BACKGROUND);
+				graphics.setBackgroundColor(getColorProvider().getButton());
 				graphics.fillGradient(r, true);
 				graphics.popState();
 
 				// draw bottom border
-				graphics.setForegroundColor(PaletteColorUtil.WIDGET_NORMAL_SHADOW);
+				graphics.setForegroundColor(getColorProvider().getButtonDarker());
 				graphics.drawLine(r.getBottomLeft().getTranslated(0, -1), r.getBottomRight().getTranslated(0, -1));
 			}
 		}
