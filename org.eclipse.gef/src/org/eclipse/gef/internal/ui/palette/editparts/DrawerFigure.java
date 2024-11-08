@@ -65,8 +65,6 @@ public class DrawerFigure extends Figure {
 	protected static final Border SCROLL_PANE_LIST_BORDER = new MarginBorder(2, 0, 2, 0);
 	/** Title margin border constant **/
 	protected static final Border TITLE_MARGIN_BORDER = new MarginBorder(4, 2, 2, 2);
-	/** Toggle button border constant **/
-	protected static final Border TOGGLE_BUTTON_BORDER = new RaisedBorder();
 	/** Tooltip border constant **/
 	protected static final Border TOOLTIP_BORDER = new CompoundBorder(new SchemeBorder(SchemeBorder.SCHEMES.RAISED),
 			new MarginBorder(1));
