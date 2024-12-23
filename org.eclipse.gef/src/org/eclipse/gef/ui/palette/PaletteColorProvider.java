@@ -23,7 +23,6 @@ import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.FigureUtilities;
 
 import org.eclipse.gef.GEFColorProvider;
-import org.eclipse.gef.internal.ui.palette.PaletteColorUtil;
 import org.eclipse.gef.internal.ui.palette.editparts.PinFigure;
 
 /**
@@ -41,6 +40,7 @@ public class PaletteColorProvider extends GEFColorProvider {
 	private static final Color HOVER_COLOR_HICONTRAST = new Color(null, 0, 128, 0);
 	private static final Color SELECTED_COLOR_HICONTRAST = new Color(null, 128, 0, 128);
 	private final Map<Double, Color> mixedButtonDarker = new HashMap<>();
+	private final Map<Double, Color> mixedListBackground = new HashMap<>();
 	private Color hotspotColor;
 
 	public static final PaletteColorProvider INSTANCE = new PaletteColorProvider();
@@ -90,6 +90,16 @@ public class PaletteColorProvider extends GEFColorProvider {
 		return ColorConstants.buttonDarkest;
 	}
 
+	@Override
+	public Color getListBackground() {
+		return ColorConstants.listBackground;
+	}
+
+	@Override
+	public Color getListForeground() {
+		return ColorConstants.listForeground;
+	}
+
 	/**
 	 * Returns the mix of {@link #getButton()} with {@link #getButtonDarker()} with
 	 * weight {@code weight}. This weight must be within the interval [0, 1].
@@ -103,10 +113,30 @@ public class PaletteColorProvider extends GEFColorProvider {
 	 */
 	public final Color getButtonDarker(double weight) {
 		if (weight < 0 || weight > 1) {
-			throw new IllegalArgumentException("The weight %d must be within [0, 1]".formatted(weight)); //$NON-NLS-1$
+			throw new IllegalArgumentException("The weight %f must be within [0, 1]".formatted(weight)); //$NON-NLS-1$
 		}
 		return mixedButtonDarker.computeIfAbsent(weight,
 				ignore -> FigureUtilities.mixColors(getButton(), getButtonDarker(), weight));
+	}
+
+	/**
+	 * Returns the mix of {@link #getButton()} with {@link #getListBackground()}
+	 * with weight {@code weight}. This weight must be within the interval [0, 1].
+	 *
+	 * The mixed color is only calculated once and then cached. It is therefore
+	 * recommended to only call this method with constants, to avoid rounding errors
+	 * due to floating point arithmetic.
+	 *
+	 * @throws IllegalArgumentException if {@code weight} is outside the valid
+	 *                                  range.
+	 * @since 3.21
+	 */
+	public final Color getListBackground(double weight) {
+		if (weight < 0 || weight > 1) {
+			throw new IllegalArgumentException("The weight %f must be within [0, 1]".formatted(weight)); //$NON-NLS-1$
+		}
+		return mixedListBackground.computeIfAbsent(weight,
+				ignore -> FigureUtilities.mixColors(getButton(), getListBackground(), weight));
 	}
 
 	/**
@@ -115,7 +145,7 @@ public class PaletteColorProvider extends GEFColorProvider {
 	 */
 	public final Color getHotspotColor() {
 		if (hotspotColor == null) {
-			hotspotColor = FigureUtilities.mixColors(PaletteColorUtil.WIDGET_LIST_BACKGROUND, getButtonDarker(), 0.60);
+			hotspotColor = FigureUtilities.mixColors(getListBackground(), getButtonDarker(), 0.60);
 		}
 		return hotspotColor;
 	}

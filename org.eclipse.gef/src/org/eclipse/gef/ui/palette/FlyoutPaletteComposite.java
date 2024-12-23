@@ -70,7 +70,6 @@ import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.Button;
 import org.eclipse.draw2d.ButtonBorder;
 import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.ColorProvider;
 import org.eclipse.draw2d.Cursors;
 import org.eclipse.draw2d.FocusEvent;
 import org.eclipse.draw2d.FocusListener;
@@ -88,7 +87,6 @@ import org.eclipse.gef.dnd.TemplateTransfer;
 import org.eclipse.gef.internal.GEFMessages;
 import org.eclipse.gef.internal.InternalGEFPlugin;
 import org.eclipse.gef.internal.InternalImages;
-import org.eclipse.gef.internal.ui.palette.PaletteColorUtil;
 import org.eclipse.gef.ui.views.palette.PaletteView;
 
 /**
@@ -653,7 +651,7 @@ public class FlyoutPaletteComposite extends Composite {
 		}
 	}
 
-	private ColorProvider getColorProvider() {
+	private PaletteColorProvider getColorProvider() {
 		return pViewer != null ? pViewer.getColorProvider() : PaletteColorProvider.INSTANCE;
 	}
 
@@ -794,11 +792,11 @@ public class FlyoutPaletteComposite extends Composite {
 				gc.setBackground(getColorProvider().getButton());
 				gc.fillRectangle(0, 0, bounds.width, bounds.height);
 
-				gc.setForeground(PaletteColorUtil.WIDGET_LIST_BACKGROUND);
+				gc.setForeground(getColorProvider().getListBackground());
 				gc.drawLine(0, 0, bounds.width, 0);
 				gc.setForeground(getColorProvider().getButtonDarker());
 				gc.drawLine(0, bounds.height - 1, bounds.width - 1, bounds.height - 1);
-				gc.setForeground(PaletteColorUtil.WIDGET_LIST_BACKGROUND);
+				gc.setForeground(getColorProvider().getListBackground());
 				gc.drawLine(0, 0, 0, bounds.height);
 				gc.setForeground(getColorProvider().getButtonDarker());
 				gc.drawLine(bounds.width - 1, 0, bounds.width - 1, bounds.height - 1);
@@ -807,10 +805,10 @@ public class FlyoutPaletteComposite extends Composite {
 				gc.drawLine(0, 0, 0, bounds.height);
 				gc.drawLine(bounds.width - 1, 0, bounds.width - 1, bounds.height);
 
-				gc.setForeground(PaletteColorUtil.WIDGET_LIST_BACKGROUND);
+				gc.setForeground(getColorProvider().getListBackground());
 				gc.drawLine(1, 0, 1, bounds.height);
 
-				gc.setForeground(PaletteColorUtil.WIDGET_BACKGROUND_LIST_BACKGROUND_85);
+				gc.setForeground(getColorProvider().getListBackground(0.85));
 				gc.drawLine(2, 0, 2, bounds.height);
 			}
 		}
@@ -1125,7 +1123,7 @@ public class FlyoutPaletteComposite extends Composite {
 			graphics.pushState();
 			org.eclipse.draw2d.geometry.Rectangle r = org.eclipse.draw2d.geometry.Rectangle.SINGLETON;
 			r.setBounds(getBounds());
-			graphics.setForegroundColor(PaletteColorUtil.WIDGET_LIST_BACKGROUND);
+			graphics.setForegroundColor(getColorProvider().getListBackground());
 			graphics.setBackgroundColor(getColorProvider().getButton());
 			graphics.fillGradient(r, true);
 
@@ -1255,7 +1253,7 @@ public class FlyoutPaletteComposite extends Composite {
 
 				triangle = new Triangle();
 				triangle.setOutline(true);
-				triangle.setBackgroundColor(PaletteColorUtil.WIDGET_LIST_BACKGROUND);
+				triangle.setBackgroundColor(getColorProvider().getListBackground());
 				triangle.setForegroundColor(getColorProvider().getButtonDarkest());
 				setContents(triangle);
 			}
@@ -1283,7 +1281,7 @@ public class FlyoutPaletteComposite extends Composite {
 				graphics.pushState();
 				org.eclipse.draw2d.geometry.Rectangle r = org.eclipse.draw2d.geometry.Rectangle.SINGLETON;
 				r.setBounds(getBounds());
-				graphics.setForegroundColor(PaletteColorUtil.WIDGET_LIST_BACKGROUND);
+				graphics.setForegroundColor(getColorProvider().getListBackground());
 				graphics.setBackgroundColor(getColorProvider().getButton());
 				graphics.fillGradient(r, true);
 				graphics.popState();

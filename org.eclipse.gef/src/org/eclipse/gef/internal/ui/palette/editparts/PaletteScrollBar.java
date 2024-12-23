@@ -34,7 +34,6 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 
-import org.eclipse.gef.internal.ui.palette.PaletteColorUtil;
 import org.eclipse.gef.ui.palette.PaletteColorProvider;
 
 public final class PaletteScrollBar extends ScrollBar {
@@ -127,7 +126,7 @@ public final class PaletteScrollBar extends ScrollBar {
 				g.translate(getLocation());
 				PointList outerPoints = transpose(down ? OUTER_DOWN_TRIANGLE : OUTER_UP_TRIANGLE);
 				PointList innerPoints = transpose(down ? INNER_DOWN_TRIANGLE : INNER_UP_TRIANGLE);
-				g.setBackgroundColor(PaletteColorUtil.WIDGET_LIST_BACKGROUND);
+				g.setBackgroundColor(colorProvider.getListBackground());
 				g.fillPolygon(outerPoints);
 				g.setBackgroundColor(colorProvider.getButtonDarkest());
 				g.fillPolygon(innerPoints);

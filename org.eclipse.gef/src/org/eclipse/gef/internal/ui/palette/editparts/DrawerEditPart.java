@@ -33,7 +33,6 @@ import org.eclipse.gef.MouseWheelHelper;
 import org.eclipse.gef.editparts.ViewportExposeHelper;
 import org.eclipse.gef.editparts.ViewportMouseWheelHelper;
 import org.eclipse.gef.internal.InternalImages;
-import org.eclipse.gef.internal.ui.palette.PaletteColorUtil;
 import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteTemplateEntry;
 import org.eclipse.gef.ui.palette.PaletteViewerPreferences;
@@ -202,7 +201,7 @@ public class DrawerEditPart extends PaletteEditPart implements IPinnableEditPart
 		getFigure().showPin(showPin);
 
 		Color background = getModel().getDrawerType().equals(PaletteTemplateEntry.PALETTE_TYPE_TEMPLATE)
-				? PaletteColorUtil.WIDGET_LIST_BACKGROUND
+				? getColorProvider().getListBackground()
 				: null;
 		getFigure().getScrollpane().setBackgroundColor(background);
 	}

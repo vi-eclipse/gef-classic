@@ -18,7 +18,6 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
 
-import org.eclipse.gef.internal.ui.palette.PaletteColorUtil;
 import org.eclipse.gef.palette.PaletteToolbar;
 import org.eclipse.gef.ui.palette.PaletteViewerPreferences;
 
@@ -48,7 +47,7 @@ public class ToolbarEditPart extends GroupEditPart {
 				super.paintFigure(graphics);
 
 				// draw top border
-				graphics.setForegroundColor(PaletteColorUtil.WIDGET_LIST_BACKGROUND);
+				graphics.setForegroundColor(getColorProvider().getListBackground());
 				graphics.drawLine(getBounds().getTopLeft(), getBounds().getTopRight());
 
 				// draw bottom border

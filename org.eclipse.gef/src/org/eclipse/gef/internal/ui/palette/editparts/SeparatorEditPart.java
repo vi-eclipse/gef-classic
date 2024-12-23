@@ -20,7 +20,6 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Rectangle;
 
-import org.eclipse.gef.internal.ui.palette.PaletteColorUtil;
 import org.eclipse.gef.palette.PaletteSeparator;
 import org.eclipse.gef.ui.palette.editparts.PaletteEditPart;
 
@@ -83,7 +82,7 @@ public class SeparatorEditPart extends PaletteEditPart {
 		@Override
 		protected void paintFigure(Graphics g) {
 			Rectangle r = getBounds().getShrinked(CROP);
-			if (getBackgroundColor().equals(PaletteColorUtil.WIDGET_LIST_BACKGROUND)) {
+			if (getBackgroundColor().equals(getColorProvider().getListBackground())) {
 				g.setForegroundColor(getColorProvider().getButtonDarker());
 				g.drawLine(r.getLeft(), r.getRight());
 			} else {

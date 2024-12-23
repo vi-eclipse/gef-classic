@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2010 IBM Corporation and others.
+ * Copyright (c) 2000, 2024 IBM Corporation and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -19,7 +19,6 @@ import org.eclipse.draw2d.LayoutManager;
 import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.ToolbarLayout;
 
-import org.eclipse.gef.internal.ui.palette.PaletteColorUtil;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.ui.palette.PaletteViewerPreferences;
 import org.eclipse.gef.ui.palette.editparts.PaletteEditPart;
@@ -45,7 +44,7 @@ public class GroupEditPart extends PaletteEditPart {
 	public IFigure createFigure() {
 		Figure figure = new Figure();
 		figure.setOpaque(true);
-		figure.setBackgroundColor(PaletteColorUtil.WIDGET_LIST_BACKGROUND);
+		figure.setBackgroundColor(getColorProvider().getListBackground());
 		return figure;
 	}
 

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2010 IBM Corporation and others.
+ * Copyright (c) 2000, 2024 IBM Corporation and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,7 +12,6 @@
  *******************************************************************************/
 package org.eclipse.gef.internal.ui.palette.editparts;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.ToolbarLayout;
@@ -32,8 +31,8 @@ public class SliderPaletteEditPart extends PaletteEditPart {
 	public IFigure createFigure() {
 		Figure figure = new Figure();
 		figure.setOpaque(true);
-		figure.setForegroundColor(ColorConstants.listForeground);
-		figure.setBackgroundColor(ColorConstants.listBackground);
+		figure.setForegroundColor(getColorProvider().getListForeground());
+		figure.setBackgroundColor(getColorProvider().getListBackground());
 		return figure;
 	}
 

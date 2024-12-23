@@ -13,6 +13,8 @@
 
 package org.eclipse.gef.internal.ui.palette.editparts;
 
+import org.eclipse.swt.graphics.Color;
+
 import org.eclipse.draw2d.AbstractLayout;
 import org.eclipse.draw2d.Animation;
 import org.eclipse.draw2d.BorderLayout;
@@ -32,7 +34,6 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 
-import org.eclipse.gef.internal.ui.palette.PaletteColorUtil;
 import org.eclipse.gef.internal.ui.palette.editparts.ToolEntryEditPart.ToolEntryToggle;
 import org.eclipse.gef.ui.palette.PaletteColorProvider;
 import org.eclipse.gef.ui.palette.PaletteViewerPreferences;
@@ -46,6 +47,7 @@ import org.eclipse.gef.ui.palette.PaletteViewerPreferences;
 public class PinnablePaletteStackFigure extends Figure {
 
 	private static final Dimension EMPTY_DIMENSION = new Dimension(0, 0);
+	private static final Color ARROW_HOVER = new Color(null, 229, 229, 219);
 
 	static final int ARROW_WIDTH = 9;
 
@@ -75,7 +77,7 @@ public class PinnablePaletteStackFigure extends Figure {
 
 			ButtonModel model = getModel();
 			if (isRolloverEnabled() && model.isMouseOver()) {
-				graphics.setBackgroundColor(PaletteColorUtil.ARROW_HOVER);
+				graphics.setBackgroundColor(ARROW_HOVER);
 				graphics.fillRoundRectangle(rect, 3, 3);
 			}
 
@@ -321,7 +323,7 @@ public class PinnablePaletteStackFigure extends Figure {
 		Rectangle paneBounds = expandablePane.getClientArea();
 
 		// fill expandable pane background
-		g.setBackgroundColor(PaletteColorUtil.WIDGET_BACKGROUND_LIST_BACKGROUND_40);
+		g.setBackgroundColor(colorProvider.getListBackground(0.4));
 		g.fillRectangle(paneBounds);
 
 		if (layoutMode == PaletteViewerPreferences.LAYOUT_ICONS
@@ -332,15 +334,15 @@ public class PinnablePaletteStackFigure extends Figure {
 					pinHeight);
 
 			// fill background colors
-			g.setForegroundColor(PaletteColorUtil.WIDGET_BACKGROUND_LIST_BACKGROUND_40);
-			g.setBackgroundColor(PaletteColorUtil.WIDGET_BACKGROUND_LIST_BACKGROUND_85);
+			g.setForegroundColor(colorProvider.getListBackground(0.4));
+			g.setBackgroundColor(colorProvider.getListBackground(0.85));
 			g.fillGradient(headerBounds, true);
 
-			g.setBackgroundColor(PaletteColorUtil.WIDGET_BACKGROUND_LIST_BACKGROUND_85);
+			g.setBackgroundColor(colorProvider.getListBackground(0.85));
 			g.fillRectangle(pinAreaBounds);
 
 			// draw white lines
-			g.setForegroundColor(PaletteColorUtil.WIDGET_LIST_BACKGROUND);
+			g.setForegroundColor(colorProvider.getListBackground());
 			g.drawLine(headerBounds.getTopLeft().getTranslated(1, 1), headerBounds.getTopRight().getTranslated(-1, 1));
 			g.drawLine(headerBounds.getBottomLeft().getTranslated(1, 0), headerBounds.getTopLeft().getTranslated(1, 1));
 			g.drawLine(headerBounds.getBottomRight().getTranslated(-2, 0),
@@ -382,13 +384,13 @@ public class PinnablePaletteStackFigure extends Figure {
 		} else {
 
 			// fill header background
-			g.setBackgroundColor(PaletteColorUtil.WIDGET_BACKGROUND_LIST_BACKGROUND_85);
+			g.setBackgroundColor(colorProvider.getListBackground(0.85));
 			g.fillRectangle(headerBounds);
 
 			// draw top and bottom border lines of header figure
 			g.setForegroundColor(colorProvider.getButtonDarker(0.65));
 			g.drawLine(headerBounds.getTopLeft(), headerBounds.getTopRight());
-			g.setForegroundColor(PaletteColorUtil.WIDGET_LIST_BACKGROUND);
+			g.setForegroundColor(colorProvider.getListBackground());
 			g.drawLine(headerBounds.getBottomLeft().getTranslated(0, -2),
 					headerBounds.getBottomRight().getTranslated(0, -2));
 

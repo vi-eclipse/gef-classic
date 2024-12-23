@@ -25,7 +25,6 @@ import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.ButtonModel;
 import org.eclipse.draw2d.Clickable;
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.CompoundBorder;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
@@ -44,7 +43,6 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Rectangle;
 
-import org.eclipse.gef.internal.ui.palette.PaletteColorUtil;
 import org.eclipse.gef.ui.palette.PaletteColorProvider;
 import org.eclipse.gef.ui.palette.PaletteViewerPreferences;
 import org.eclipse.gef.ui.palette.editparts.PaletteToolbarLayout;
@@ -111,7 +109,7 @@ public class DrawerFigure extends Figure {
 			// draw top border of drawer figure
 			g.setForegroundColor(colorProvider.getButtonDarker());
 			g.drawLine(r.getTopLeft(), r.getTopRight());
-			g.setForegroundColor(ColorConstants.listBackground);
+			g.setForegroundColor(colorProvider.getListBackground());
 			g.drawLine(r.getTopLeft().getTranslated(0, 1), r.getTopRight().getTranslated(0, 1));
 			r.shrink(new Insets(2, 0, 0, 0));
 			if (isExpanded()) {
@@ -122,7 +120,7 @@ public class DrawerFigure extends Figure {
 
 			// draw bottom border of drawer figure
 			if (!isExpanded()) {
-				g.setForegroundColor(ColorConstants.listBackground);
+				g.setForegroundColor(colorProvider.getListBackground());
 				g.drawLine(r.getBottomLeft().getTranslated(0, -1), r.getBottomRight().getTranslated(0, -1));
 				r.shrink(new Insets(0, 0, 1, 0));
 			}
@@ -209,13 +207,13 @@ public class DrawerFigure extends Figure {
 	 */
 	private void paintToggleGradient(Graphics g, Rectangle rect) {
 		if (isExpanded()) {
-			g.setBackgroundColor(PaletteColorUtil.WIDGET_BACKGROUND_LIST_BACKGROUND_85);
+			g.setBackgroundColor(colorProvider.getListBackground(0.85));
 			g.fillRectangle(rect);
 		} else if (collapseToggle.getModel().isMouseOver()) {
-			Color color1 = PaletteColorUtil.WIDGET_BACKGROUND_LIST_BACKGROUND_60;
+			Color color1 = colorProvider.getListBackground(0.6);
 			Color color2 = colorProvider.getButtonDarker(0.9);
 			Color color3 = colorProvider.getButtonDarker(0.95);
-			Color color4 = PaletteColorUtil.WIDGET_BACKGROUND_LIST_BACKGROUND_90;
+			Color color4 = colorProvider.getListBackground(0.9);
 
 			g.setForegroundColor(color1);
 			g.setBackgroundColor(color2);
@@ -229,7 +227,7 @@ public class DrawerFigure extends Figure {
 			g.setBackgroundColor(color4);
 			g.fillGradient(rect.x, rect.bottom() - 2, rect.width, 2, true);
 		} else {
-			g.setForegroundColor(PaletteColorUtil.WIDGET_BACKGROUND_LIST_BACKGROUND_85);
+			g.setForegroundColor(colorProvider.getListBackground(0.85));
 			g.setBackgroundColor(colorProvider.getButtonDarker(0.45));
 			g.fillGradient(rect, true);
 		}
@@ -319,7 +317,7 @@ public class DrawerFigure extends Figure {
 		scrollpane.setLayoutManager(new OverlayScrollPaneLayout());
 		scrollpane.setContents(new Figure());
 		scrollpane.getContents().setOpaque(true);
-		scrollpane.getContents().setBackgroundColor(PaletteColorUtil.WIDGET_LIST_BACKGROUND);
+		scrollpane.getContents().setBackgroundColor(colorProvider.getListBackground());
 	}
 
 	@SuppressWarnings("static-method")
