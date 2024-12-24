@@ -29,6 +29,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.zest.core.viewers.GraphViewer;
 import org.eclipse.zest.core.viewers.IGraphContentProvider;
+import org.eclipse.zest.examples.Messages;
 import org.eclipse.zest.layouts.algorithms.RadialLayoutAlgorithm;
 
 /**
@@ -83,7 +84,7 @@ public class GraphJFaceSnippet3 {
 		@Override
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 			if (newInput != null) {
-				graph = new StringTokenizer((String) newInput, "\n"); //$NON-NLS-1$
+				graph = new StringTokenizer((String) newInput, System.lineSeparator());
 			}
 		}
 
@@ -94,7 +95,7 @@ public class GraphJFaceSnippet3 {
 	public static void main(String[] args) throws IOException {
 		Shell shell = new Shell();
 		Display display = shell.getDisplay();
-		shell.setText("Simple Graph File Format"); //$NON-NLS-1$
+		shell.setText(Messages.GraphJFaceSnippet3_Title);
 
 		shell.setLayout(new FillLayout(SWT.VERTICAL));
 		shell.setSize(400, 400);
@@ -110,7 +111,7 @@ public class GraphJFaceSnippet3 {
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is));
 			StringBuilder stringBuffer = new StringBuilder();
 			while (bufferedReader.ready()) {
-				stringBuffer.append(bufferedReader.readLine() + "\n"); //$NON-NLS-1$
+				stringBuffer.append(bufferedReader.readLine()).append(System.lineSeparator());
 			}
 			viewer.setInput(stringBuffer.toString());
 		}

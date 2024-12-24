@@ -26,6 +26,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.zest.core.viewers.GraphViewer;
 import org.eclipse.zest.core.viewers.IGraphEntityContentProvider;
+import org.eclipse.zest.examples.Messages;
 import org.eclipse.zest.layouts.algorithms.SpringLayoutAlgorithm;
 
 /**
@@ -47,21 +48,21 @@ public class GraphJFaceSnippet1 {
 
 		@Override
 		public Object[] getConnectedTo(Object entity) {
-			if (entity.equals("First")) {
-				return new Object[] { "Second" };
+			if (entity.equals(Messages.First)) {
+				return new Object[] { Messages.Second };
 			}
-			if (entity.equals("Second")) {
-				return new Object[] { "Third" };
+			if (entity.equals(Messages.Second)) {
+				return new Object[] { Messages.Third };
 			}
-			if (entity.equals("Third")) {
-				return new Object[] { "First" };
+			if (entity.equals(Messages.Third)) {
+				return new Object[] { Messages.First };
 			}
 			return null;
 		}
 
 		@Override
 		public Object[] getElements(Object inputElement) {
-			return new String[] { "First", "Second", "Third" };
+			return new String[] { Messages.First, Messages.Second, Messages.Third };
 		}
 
 		public double getWeight(Object entity1, Object entity2) {
@@ -110,8 +111,9 @@ public class GraphJFaceSnippet1 {
 		Display d = shell.getDisplay();
 		shell.setLayout(new FillLayout(SWT.VERTICAL));
 		shell.setSize(400, 400);
+		shell.setText(Messages.GraphJFaceSnippet1_Title);
 		Button button = new Button(shell, SWT.PUSH);
-		button.setText("Reload");
+		button.setText(Messages.GraphJFaceSnippet1_Reload);
 		button.addSelectionListener(new SelectionAdapter() {
 
 			@Override
@@ -125,7 +127,7 @@ public class GraphJFaceSnippet1 {
 		viewer.setContentProvider(new MyContentProvider());
 		viewer.setLabelProvider(new MyLabelProvider());
 		viewer.setLayoutAlgorithm(new SpringLayoutAlgorithm());
-		viewer.addSelectionChangedListener(event -> System.out.println("Selection changed: " + (event.getSelection())));
+		viewer.addSelectionChangedListener(event -> System.out.println("Selection changed: " + (event.getSelection()))); //$NON-NLS-1$
 		viewer.setInput(new Object());
 
 		shell.open();

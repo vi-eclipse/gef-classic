@@ -193,14 +193,14 @@ public class GraphJFaceTests extends AbstractGraphTest {
 		assertEquals(graph.getNodes().size(), 3);
 
 		GraphContainer container = (GraphContainer) graph.getNodes().get(0);
-		assertNode(container.getNodes().get(0), "rock");
-		assertNode(container.getNodes().get(1), "paper");
-		assertNode(container.getNodes().get(2), "scissors");
+		assertNode(container.getNodes().get(0), "Rock");
+		assertNode(container.getNodes().get(1), "Paper");
+		assertNode(container.getNodes().get(2), "Scissors");
 		assertEquals(container.getNodes().size(), 3);
 
-		assertConnection(graph.getConnections().get(0), "rock", "paper");
+		assertConnection(graph.getConnections().get(0), "Rock", "Paper");
 		assertConnection(graph.getConnections().get(1), "Second", "Third");
-		assertConnection(graph.getConnections().get(2), "Second", "rock");
+		assertConnection(graph.getConnections().get(2), "Second", "Rock");
 		assertConnection(graph.getConnections().get(3), "Third", "First");
 		assertConnection(graph.getConnections().get(4), "First", "Second");
 		assertEquals(graph.getConnections().size(), 5);

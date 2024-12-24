@@ -27,6 +27,7 @@ import org.eclipse.zest.core.viewers.GraphViewer;
 import org.eclipse.zest.core.viewers.IFigureProvider;
 import org.eclipse.zest.core.viewers.IGraphEntityContentProvider;
 import org.eclipse.zest.core.viewers.INestedContentProvider;
+import org.eclipse.zest.examples.Messages;
 import org.eclipse.zest.examples.uml.UMLClassFigure;
 import org.eclipse.zest.layouts.algorithms.SpringLayoutAlgorithm;
 
@@ -48,24 +49,17 @@ import org.eclipse.draw2d.Label;
  */
 public class GraphJFaceSnippet7 {
 
-	private static final String SCISSORS = "scissors"; //$NON-NLS-1$
-	private static final String PAPER = "paper"; //$NON-NLS-1$
-	private static final String ROCK = "rock"; //$NON-NLS-1$
-	private static final String THIRD = "Third"; //$NON-NLS-1$
-	private static final String SECOND = "Second"; //$NON-NLS-1$
-	private static final String FIRST = "First"; //$NON-NLS-1$
-
 	public static IFigure createClassFigure1(Font classFont, Image classImage, Image publicField, Image privateField) {
-		Label classLabel1 = new Label("Table", classImage); //$NON-NLS-1$
+		Label classLabel1 = new Label(Messages.GraphJFaceSnippet7_Class, classImage);
 		classLabel1.setFont(classFont);
 
 		UMLClassFigure classFigure = new UMLClassFigure(classLabel1);
-		Label attribute1 = new Label("columns: Column[]", privateField); //$NON-NLS-1$
+		Label attribute1 = new Label(Messages.GraphJFaceSnippet7_Field_Columns, privateField);
 
-		Label attribute2 = new Label("rows: Row[]", privateField); //$NON-NLS-1$
+		Label attribute2 = new Label(Messages.GraphJFaceSnippet7_Field_Rows, privateField);
 
-		Label method1 = new Label("getColumns(): Column[]", publicField); //$NON-NLS-1$
-		Label method2 = new Label("getRows(): Row[]", publicField); //$NON-NLS-1$
+		Label method1 = new Label(Messages.GraphJFaceSnippet7_Method_GetColumns, publicField);
+		Label method2 = new Label(Messages.GraphJFaceSnippet7_Method_GetRows, publicField);
 		classFigure.getAttributesCompartment().add(attribute1);
 		classFigure.getAttributesCompartment().add(attribute2);
 		classFigure.getMethodsCompartment().add(method1);
@@ -79,24 +73,24 @@ public class GraphJFaceSnippet7 {
 
 		@Override
 		public Object[] getConnectedTo(Object entity) {
-			if (entity.equals(FIRST)) {
-				return new Object[] { SECOND };
+			if (entity.equals(Messages.First)) {
+				return new Object[] { Messages.Second };
 			}
-			if (entity.equals(SECOND)) {
-				return new Object[] { THIRD, ROCK };
+			if (entity.equals(Messages.Second)) {
+				return new Object[] { Messages.Third, Messages.Rock };
 			}
-			if (entity.equals(THIRD)) {
-				return new Object[] { FIRST };
+			if (entity.equals(Messages.Third)) {
+				return new Object[] { Messages.First };
 			}
-			if (entity.equals(ROCK)) {
-				return new Object[] { PAPER };
+			if (entity.equals(Messages.Rock)) {
+				return new Object[] { Messages.Paper };
 			}
 			return null;
 		}
 
 		@Override
 		public Object[] getElements(Object inputElement) {
-			return new String[] { FIRST, SECOND, THIRD };
+			return new String[] { Messages.First, Messages.Second, Messages.Third };
 		}
 
 		public double getWeight(Object entity1, Object entity2) {
@@ -115,12 +109,12 @@ public class GraphJFaceSnippet7 {
 
 		@Override
 		public Object[] getChildren(Object element) {
-			return new Object[] { ROCK, PAPER, SCISSORS };
+			return new Object[] { Messages.Rock, Messages.Paper, Messages.Scissors };
 		}
 
 		@Override
 		public boolean hasChildren(Object element) {
-			return element.equals(FIRST);
+			return element.equals(Messages.First);
 		}
 
 	}
@@ -137,7 +131,7 @@ public class GraphJFaceSnippet7 {
 
 		@Override
 		public Image getImage(Object element) {
-			if (ROCK.equals(element) || PAPER.equals(element) || SCISSORS.equals(element)) {
+			if (Messages.Rock.equals(element) || Messages.Paper.equals(element) || Messages.Scissors.equals(element)) {
 				return image;
 			}
 			return null;
@@ -174,7 +168,7 @@ public class GraphJFaceSnippet7 {
 	public static void main(String[] args) {
 		Shell shell = new Shell();
 		Display d = shell.getDisplay();
-		shell.setText("GraphJFaceSnippet2"); //$NON-NLS-1$
+		shell.setText(Messages.GraphJFaceSnippet7_Title);
 		shell.setLayout(new FillLayout(SWT.VERTICAL));
 		shell.setSize(400, 400);
 		viewer = new GraphViewer(shell, SWT.NONE);
@@ -184,7 +178,7 @@ public class GraphJFaceSnippet7 {
 		viewer.setInput(new Object());
 
 		Button button = new Button(shell, SWT.PUSH);
-		button.setText("push"); //$NON-NLS-1$
+		button.setText(Messages.GraphJFaceSnippet7_Push);
 		button.addListener(SWT.Selection, e -> viewer.setInput(new Object()));
 
 		shell.open();

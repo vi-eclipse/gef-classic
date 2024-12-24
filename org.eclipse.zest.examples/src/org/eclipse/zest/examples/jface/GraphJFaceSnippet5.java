@@ -28,6 +28,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.zest.core.viewers.GraphViewer;
 import org.eclipse.zest.core.viewers.IGraphContentProvider;
+import org.eclipse.zest.examples.Messages;
 import org.eclipse.zest.layouts.algorithms.SpringLayoutAlgorithm;
 
 /**
@@ -37,17 +38,17 @@ public class GraphJFaceSnippet5 {
 
 	static class MyContentProvider implements IGraphContentProvider {
 
-		Object[] elements = { "Rock2Paper", "Paper2Scissors", "Scissors2Rock" };
+		Object[] elements = { Messages.Rock2Paper, Messages.Paper2Scissors, Messages.Scissors2Rock };
 
 		@Override
 		public Object getDestination(Object rel) {
-			if ("Rock2Paper".equals(rel)) {
-				return "Rock";
+			if (Messages.Rock2Paper.equals(rel)) {
+				return Messages.Rock;
 			}
-			if ("Paper2Scissors".equals(rel) || "Scissors2Paper".equals(rel)) {
-				return "Paper";
-			} else if ("Scissors2Rock".equals(rel)) {
-				return "Scissors";
+			if (Messages.Paper2Scissors.equals(rel) || Messages.Scissors2Paper.equals(rel)) {
+				return Messages.Paper;
+			} else if (Messages.Scissors2Rock.equals(rel)) {
+				return Messages.Scissors;
 			}
 			return null;
 		}
@@ -59,13 +60,13 @@ public class GraphJFaceSnippet5 {
 
 		@Override
 		public Object getSource(Object rel) {
-			if ("Rock2Paper".equals(rel)) {
-				return "Paper";
+			if (Messages.Rock2Paper.equals(rel)) {
+				return Messages.Paper;
 			}
-			if ("Paper2Scissors".equals(rel) || "Scissors2Paper".equals(rel)) {
-				return "Scissors";
-			} else if ("Scissors2Rock".equals(rel)) {
-				return "Rock";
+			if (Messages.Paper2Scissors.equals(rel) || Messages.Scissors2Paper.equals(rel)) {
+				return Messages.Scissors;
+			} else if (Messages.Scissors2Rock.equals(rel)) {
+				return Messages.Rock;
 			}
 			return null;
 		}
@@ -115,7 +116,7 @@ public class GraphJFaceSnippet5 {
 	public static void main(String[] args) {
 		Shell shell = new Shell();
 		Display d = shell.getDisplay();
-		shell.setText("GraphJFaceSnippet2");
+		shell.setText(Messages.GraphJFaceSnippet5_Title);
 		shell.setLayout(new FillLayout(SWT.VERTICAL));
 		shell.setSize(400, 400);
 		Composite parent = new Composite(shell, SWT.NONE);
@@ -133,11 +134,12 @@ public class GraphJFaceSnippet5 {
 
 	private static void buildButton(Composite parent) {
 		Button button = new Button(parent, SWT.PUSH);
-		button.setText("Refresh");
+		button.setText(Messages.GraphJFaceSnippet5_Refresh);
 		button.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				contentProvider.setElements(new Object[] { "Rock2Paper", "Scissors2Paper", "Scissors2Rock" });
+				contentProvider.setElements(
+						new Object[] { Messages.Rock2Paper, Messages.Scissors2Paper, Messages.Scissors2Rock });
 				viewer.refresh();
 			}
 		});

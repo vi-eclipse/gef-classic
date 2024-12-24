@@ -24,6 +24,7 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.zest.core.viewers.GraphViewer;
+import org.eclipse.zest.examples.Messages;
 import org.eclipse.zest.layouts.algorithms.TreeLayoutAlgorithm;
 
 /**
@@ -33,7 +34,8 @@ public class GraphJFaceSnippet9 {
 
 	static class MyContentProvider implements ITreeContentProvider {
 
-		private static final String n1 = "First", n2 = "Second", n3 = "Third", n4 = "Fourth";
+		private static final String n1 = Messages.First, n2 = Messages.Second, n3 = Messages.Third,
+				n4 = Messages.Fourth;
 
 		@Override
 		public Object[] getElements(Object inputElement) {
@@ -75,7 +77,7 @@ public class GraphJFaceSnippet9 {
 
 		@Override
 		public boolean hasChildren(Object element) {
-			return element.equals("First") || element.equals("Second");
+			return element.equals(Messages.First) || element.equals(Messages.Second);
 		}
 	}
 
@@ -105,10 +107,11 @@ public class GraphJFaceSnippet9 {
 	public static void main(String[] args) {
 		Display d = new Display();
 		Shell shell = new Shell(d);
+		shell.setText(Messages.GraphJFaceSnippet9_Title);
 		shell.setLayout(new FillLayout(SWT.VERTICAL));
 		shell.setSize(400, 400);
 		Button button = new Button(shell, SWT.PUSH);
-		button.setText("Reload");
+		button.setText(Messages.GraphJFaceSnippet9_Reload);
 		button.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -119,7 +122,7 @@ public class GraphJFaceSnippet9 {
 		viewer.setContentProvider(new MyContentProvider());
 		viewer.setLabelProvider(new MyLabelProvider());
 		viewer.setLayoutAlgorithm(new TreeLayoutAlgorithm());
-		viewer.addSelectionChangedListener(event -> System.out.println("Selection changed: " + (event.getSelection())));
+		viewer.addSelectionChangedListener(event -> System.out.println("Selection changed: " + (event.getSelection()))); //$NON-NLS-1$
 		viewer.setInput(new Object());
 		shell.open();
 		while (!shell.isDisposed()) {

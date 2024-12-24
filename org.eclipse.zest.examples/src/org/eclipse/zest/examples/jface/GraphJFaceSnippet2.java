@@ -22,6 +22,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.zest.core.viewers.GraphViewer;
 import org.eclipse.zest.core.viewers.IGraphContentProvider;
+import org.eclipse.zest.examples.Messages;
 import org.eclipse.zest.layouts.algorithms.SpringLayoutAlgorithm;
 
 /**
@@ -43,29 +44,29 @@ public class GraphJFaceSnippet2 {
 
 		@Override
 		public Object getDestination(Object rel) {
-			if ("Rock2Paper".equals(rel)) {
-				return "Rock";
-			} else if ("Paper2Scissors".equals(rel)) {
-				return "Paper";
-			} else if ("Scissors2Rock".equals(rel)) {
-				return "Scissors";
+			if (Messages.Rock2Paper.equals(rel)) {
+				return Messages.Rock;
+			} else if (Messages.Paper2Scissors.equals(rel)) {
+				return Messages.Paper;
+			} else if (Messages.Scissors2Rock.equals(rel)) {
+				return Messages.Scissors;
 			}
 			return null;
 		}
 
 		@Override
 		public Object[] getElements(Object input) {
-			return new Object[] { "Rock2Paper", "Paper2Scissors", "Scissors2Rock" };
+			return new Object[] { Messages.Rock2Paper, Messages.Paper2Scissors, Messages.Scissors2Rock };
 		}
 
 		@Override
 		public Object getSource(Object rel) {
-			if ("Rock2Paper".equals(rel)) {
-				return "Paper";
-			} else if ("Paper2Scissors".equals(rel)) {
-				return "Scissors";
-			} else if ("Scissors2Rock".equals(rel)) {
-				return "Rock";
+			if (Messages.Rock2Paper.equals(rel)) {
+				return Messages.Paper;
+			} else if (Messages.Paper2Scissors.equals(rel)) {
+				return Messages.Scissors;
+			} else if (Messages.Scissors2Rock.equals(rel)) {
+				return Messages.Rock;
 			}
 			return null;
 		}
@@ -89,7 +90,7 @@ public class GraphJFaceSnippet2 {
 
 		@Override
 		public Image getImage(Object element) {
-			if (element.equals("Rock") || element.equals("Paper") || element.equals("Scissors")) {
+			if (element.equals(Messages.Rock) || element.equals(Messages.Paper) || element.equals(Messages.Scissors)) {
 				return image;
 			}
 			return null;
@@ -110,7 +111,7 @@ public class GraphJFaceSnippet2 {
 	public static void main(String[] args) {
 		Shell shell = new Shell();
 		Display d = shell.getDisplay();
-		shell.setText("GraphJFaceSnippet2");
+		shell.setText(Messages.GraphJFaceSnippet2_Title);
 		shell.setLayout(new FillLayout(SWT.VERTICAL));
 		shell.setSize(400, 400);
 		viewer = new GraphViewer(shell, SWT.NONE);

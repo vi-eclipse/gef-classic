@@ -25,6 +25,7 @@ import org.eclipse.zest.core.viewers.EntityConnectionData;
 import org.eclipse.zest.core.viewers.GraphViewer;
 import org.eclipse.zest.core.viewers.IGraphEntityContentProvider;
 import org.eclipse.zest.core.viewers.INestedContentProvider;
+import org.eclipse.zest.examples.Messages;
 import org.eclipse.zest.layouts.algorithms.SpringLayoutAlgorithm;
 
 /**
@@ -41,35 +42,29 @@ import org.eclipse.zest.layouts.algorithms.SpringLayoutAlgorithm;
  *
  */
 public class GraphJFaceSnippet6 {
-	private static final String SCISSORS = "scissors"; //$NON-NLS-1$
-	private static final String PAPER = "paper"; //$NON-NLS-1$
-	private static final String ROCK = "rock"; //$NON-NLS-1$
-	private static final String THIRD = "Third"; //$NON-NLS-1$
-	private static final String SECOND = "Second"; //$NON-NLS-1$
-	private static final String FIRST = "First"; //$NON-NLS-1$
 
 	static class MyContentProvider implements IGraphEntityContentProvider, INestedContentProvider {
 
 		@Override
 		public Object[] getConnectedTo(Object entity) {
-			if (entity.equals(FIRST)) {
-				return new Object[] { SECOND };
+			if (entity.equals(Messages.First)) {
+				return new Object[] { Messages.Second };
 			}
-			if (entity.equals(SECOND)) {
-				return new Object[] { THIRD, ROCK };
+			if (entity.equals(Messages.Second)) {
+				return new Object[] { Messages.Third, Messages.Rock };
 			}
-			if (entity.equals(THIRD)) {
-				return new Object[] { FIRST };
+			if (entity.equals(Messages.Third)) {
+				return new Object[] { Messages.First };
 			}
-			if (entity.equals(ROCK)) {
-				return new Object[] { PAPER };
+			if (entity.equals(Messages.Rock)) {
+				return new Object[] { Messages.Paper };
 			}
 			return null;
 		}
 
 		@Override
 		public Object[] getElements(Object inputElement) {
-			return new String[] { FIRST, SECOND, THIRD };
+			return new String[] { Messages.First, Messages.Second, Messages.Third };
 		}
 
 		public double getWeight(Object entity1, Object entity2) {
@@ -88,12 +83,12 @@ public class GraphJFaceSnippet6 {
 
 		@Override
 		public Object[] getChildren(Object element) {
-			return new Object[] { ROCK, PAPER, SCISSORS };
+			return new Object[] { Messages.Rock, Messages.Paper, Messages.Scissors };
 		}
 
 		@Override
 		public boolean hasChildren(Object element) {
-			return element.equals(FIRST);
+			return element.equals(Messages.First);
 		}
 
 	}
@@ -103,7 +98,7 @@ public class GraphJFaceSnippet6 {
 
 		@Override
 		public Image getImage(Object element) {
-			if (ROCK.equals(element) || PAPER.equals(element) || SCISSORS.equals(element)) {
+			if (Messages.Rock.equals(element) || Messages.Paper.equals(element) || Messages.Scissors.equals(element)) {
 				return image;
 			}
 			return null;
@@ -127,7 +122,7 @@ public class GraphJFaceSnippet6 {
 	public static void main(String[] args) {
 		Shell shell = new Shell();
 		Display d = shell.getDisplay();
-		shell.setText("GraphJFaceSnippet2"); //$NON-NLS-1$
+		shell.setText(Messages.GraphJFaceSnippet6_Title);
 		shell.setLayout(new FillLayout(SWT.VERTICAL));
 		shell.setSize(400, 400);
 		viewer = new GraphViewer(shell, SWT.NONE);
@@ -137,7 +132,7 @@ public class GraphJFaceSnippet6 {
 		viewer.setInput(new Object());
 
 		Button button = new Button(shell, SWT.PUSH);
-		button.setText("push"); //$NON-NLS-1$
+		button.setText(Messages.GraphJFaceSnippet6_Push);
 		button.addListener(SWT.Selection, e -> viewer.setInput(new Object()));
 
 		shell.open();

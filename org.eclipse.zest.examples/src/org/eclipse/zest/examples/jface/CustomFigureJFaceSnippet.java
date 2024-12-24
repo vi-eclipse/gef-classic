@@ -28,6 +28,7 @@ import org.eclipse.zest.core.viewers.IFigureProvider;
 import org.eclipse.zest.core.viewers.IGraphEntityContentProvider;
 import org.eclipse.zest.core.widgets.ILabeledFigure;
 import org.eclipse.zest.core.widgets.IStyleableFigure;
+import org.eclipse.zest.examples.Messages;
 import org.eclipse.zest.layouts.algorithms.SpringLayoutAlgorithm;
 
 import org.eclipse.draw2d.Graphics;
@@ -113,21 +114,21 @@ public class CustomFigureJFaceSnippet {
 
 		@Override
 		public Object[] getConnectedTo(Object entity) {
-			if (entity.equals("One")) {
-				return new Object[] { "Two" };
+			if (entity.equals(Messages.One)) {
+				return new Object[] { Messages.Two };
 			}
-			if (entity.equals("Two")) {
-				return new Object[] { "Three" };
+			if (entity.equals(Messages.Two)) {
+				return new Object[] { Messages.Three };
 			}
-			if (entity.equals("Three")) {
-				return new Object[] { "One" };
+			if (entity.equals(Messages.Three)) {
+				return new Object[] { Messages.One };
 			}
 			return null;
 		}
 
 		@Override
 		public Object[] getElements(Object inputElement) {
-			return new String[] { "One", "Two", "Three" };
+			return new String[] { Messages.One, Messages.Two, Messages.Three };
 		}
 
 		@Override
@@ -177,7 +178,7 @@ public class CustomFigureJFaceSnippet {
 	public static void main(String[] args) {
 		Display d = new Display();
 		Shell shell = new Shell(d);
-		shell.setText("CustomFigureJFaceSnippet");
+		shell.setText(Messages.CustomFigureJFaceSnippet_Title);
 		shell.setLayout(new FillLayout(SWT.VERTICAL));
 		shell.setSize(400, 400);
 		viewer = new GraphViewer(shell, SWT.NONE);

@@ -32,6 +32,7 @@ import org.eclipse.zest.core.viewers.GraphViewer;
 import org.eclipse.zest.core.viewers.IConnectionStyleProvider2;
 import org.eclipse.zest.core.viewers.IEntityConnectionStyleProvider2;
 import org.eclipse.zest.core.viewers.IGraphContentProvider;
+import org.eclipse.zest.examples.Messages;
 import org.eclipse.zest.layouts.algorithms.SpringLayoutAlgorithm;
 
 import org.eclipse.draw2d.ConnectionRouter;
@@ -54,33 +55,33 @@ public class ManhattanLayoutJFaceSnippet {
 
 		@Override
 		public Object getDestination(Object rel) {
-			if ("Rock2Paper".equals(rel)) {
-				return "Rock";
+			if (Messages.Rock2Paper.equals(rel)) {
+				return Messages.Rock;
 			}
-			if ("Paper2Scissors".equals(rel)) {
-				return "Paper";
+			if (Messages.Paper2Scissors.equals(rel)) {
+				return Messages.Paper;
 			}
-			if ("Scissors2Rock".equals(rel)) {
-				return "Scissors";
+			if (Messages.Scissors2Rock.equals(rel)) {
+				return Messages.Scissors;
 			}
 			return null;
 		}
 
 		@Override
 		public Object[] getElements(Object input) {
-			return new Object[] { "Rock2Paper", "Paper2Scissors", "Scissors2Rock" };
+			return new Object[] { Messages.Rock2Paper, Messages.Paper2Scissors, Messages.Scissors2Rock };
 		}
 
 		@Override
 		public Object getSource(Object rel) {
-			if ("Rock2Paper".equals(rel)) {
-				return "Paper";
+			if (Messages.Rock2Paper.equals(rel)) {
+				return Messages.Paper;
 			}
-			if ("Paper2Scissors".equals(rel)) {
-				return "Scissors";
+			if (Messages.Paper2Scissors.equals(rel)) {
+				return Messages.Scissors;
 			}
-			if ("Scissors2Rock".equals(rel)) {
-				return "Rock";
+			if (Messages.Scissors2Rock.equals(rel)) {
+				return Messages.Rock;
 			}
 			return null;
 		}
@@ -104,7 +105,7 @@ public class ManhattanLayoutJFaceSnippet {
 
 		@Override
 		public Image getImage(Object element) {
-			if (element.equals("Rock") || element.equals("Paper") || element.equals("Scissors")) {
+			if (element.equals(Messages.Rock) || element.equals(Messages.Paper) || element.equals(Messages.Scissors)) {
 				return image;
 			}
 			return null;
@@ -118,7 +119,7 @@ public class ManhattanLayoutJFaceSnippet {
 		/* Relation-based customization: IConnectionStyleProvider */
 
 		public ConnectionRouter getRouter(Object rel) {
-			if (!rel.equals("Scissors2Rock")) {
+			if (!rel.equals(Messages.Scissors2Rock)) {
 				return new ManhattanConnectionRouter();
 			}
 			return null;
@@ -156,7 +157,7 @@ public class ManhattanLayoutJFaceSnippet {
 
 		@Override
 		public Image getImage(Object element) {
-			if (element.equals("Rock") || element.equals("Paper") || element.equals("Scissors")) {
+			if (element.equals(Messages.Rock) || element.equals(Messages.Paper) || element.equals(Messages.Scissors)) {
 				return image;
 			}
 			return null;
@@ -171,8 +172,8 @@ public class ManhattanLayoutJFaceSnippet {
 
 		@Override
 		public ConnectionRouter getRouter(Object src, Object dest) {
-			System.out.println(src + " -> " + dest);
-			if (!(src.equals("Paper") && dest.equals("Rock"))) {
+			System.out.println(src + " -> " + dest); //$NON-NLS-1$
+			if (!(src.equals(Messages.Paper) && dest.equals(Messages.Rock))) {
 				return new ManhattanConnectionRouter();
 			}
 			return null;
@@ -218,7 +219,7 @@ public class ManhattanLayoutJFaceSnippet {
 	public static void main(String[] args) {
 		Display d = new Display();
 		Shell shell = new Shell(d);
-		shell.setText("GraphJFaceSnippet2");
+		shell.setText(Messages.ManhattanLayoutJFaceSnippet_Title);
 		shell.setLayout(new FillLayout(SWT.VERTICAL));
 		shell.setSize(400, 400);
 		viewer = new GraphViewer(shell, SWT.NONE);
@@ -231,7 +232,7 @@ public class ManhattanLayoutJFaceSnippet {
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				System.out
-						.println("Selection Changed: " + selectionToString((StructuredSelection) event.getSelection()));
+						.println("Selection Changed: " + selectionToString((StructuredSelection) event.getSelection())); //$NON-NLS-1$
 			}
 
 			private String selectionToString(StructuredSelection selection) {
@@ -242,7 +243,7 @@ public class ManhattanLayoutJFaceSnippet {
 					if (first) {
 						first = false;
 					} else {
-						stringBuffer.append(" : ");
+						stringBuffer.append(" : "); //$NON-NLS-1$
 					}
 					stringBuffer.append(iterator.next());
 				}

@@ -26,6 +26,7 @@ import org.eclipse.zest.core.viewers.IGraphEntityContentProvider;
 import org.eclipse.zest.core.viewers.ISelfStyleProvider;
 import org.eclipse.zest.core.widgets.GraphConnection;
 import org.eclipse.zest.core.widgets.GraphNode;
+import org.eclipse.zest.examples.Messages;
 import org.eclipse.zest.layouts.algorithms.RadialLayoutAlgorithm;
 
 import org.eclipse.draw2d.ColorConstants;
@@ -44,21 +45,21 @@ public class GraphJFaceSnippet8 {
 
 		@Override
 		public Object[] getConnectedTo(Object entity) {
-			if (entity.equals("First")) {
-				return new Object[] { "First", "Second" };
+			if (entity.equals(Messages.First)) {
+				return new Object[] { Messages.First, Messages.Second };
 			}
-			if (entity.equals("Second")) {
-				return new Object[] { "Third" };
+			if (entity.equals(Messages.Second)) {
+				return new Object[] { Messages.Third };
 			}
-			if (entity.equals("Third")) {
-				return new Object[] { "Second" };
+			if (entity.equals(Messages.Third)) {
+				return new Object[] { Messages.Second };
 			}
 			return null;
 		}
 
 		@Override
 		public Object[] getElements(Object inputElement) {
-			return new String[] { "First", "Second", "Third" };
+			return new String[] { Messages.First, Messages.Second, Messages.Third };
 		}
 
 		public double getWeight(Object entity1, Object entity2) {
@@ -124,6 +125,7 @@ public class GraphJFaceSnippet8 {
 	public static void main(String[] args) {
 		Shell shell = new Shell();
 		Display d = shell.getDisplay();
+		shell.setText(Messages.GraphJFaceSnippet8_Title);
 		shell.setLayout(new FillLayout(SWT.VERTICAL));
 		shell.setSize(400, 400);
 		viewer = new GraphViewer(shell, SWT.NONE);
