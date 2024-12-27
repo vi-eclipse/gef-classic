@@ -139,12 +139,18 @@ public class Graph extends FigureCanvas implements IContainer2 {
 	private ConnectionRouter defaultConnectionRouter;
 	private ZoomManager zoomManager = null;
 
+	private final ZoomGestureListener zoomListener;
+	private final RotateGestureListener rotateListener;
+
 	/**
 	 * Constructor for a Graph. This widget represents the root of the graph, and
 	 * can contain graph items such as graph nodes and graph connections.
 	 *
 	 * @param parent
-	 * @param style
+	 * @param style  The SWT style used for the underlying {@link FigureCanvas}. See
+	 *               {@link FigureCanvas#ACCEPTED_STYLES} for a list of all
+	 *               supported styles. Use {@link #setGraphStyle(int)} to set the
+	 *               Zest-specific styles.
 	 */
 	public Graph(Composite parent, int style) {
 		this(parent, style, false);
@@ -155,13 +161,16 @@ public class Graph extends FigureCanvas implements IContainer2 {
 	 * can contain graph items such as graph nodes and graph connections.
 	 *
 	 * @param parent
-	 * @param style
+	 * @param style           The SWT style used for the underlying
+	 *                        {@link FigureCanvas}. See
+	 *                        {@link FigureCanvas#ACCEPTED_STYLES} for a list of all
+	 *                        supported styles. Use {@link #setGraphStyle(int)} to
+	 *                        set the Zest-specific styles.
 	 * @param enableHideNodes
 	 * @since 1.8
 	 */
 	public Graph(Composite parent, int style, boolean enableHideNodes) {
 		super(parent, style | SWT.DOUBLE_BUFFERED);
-		this.style = style;
 		this.setBackground(ColorConstants.white);
 
 		LIGHT_BLUE = new Color(Display.getDefault(), 216, 228, 248);
@@ -226,6 +235,8 @@ public class Graph extends FigureCanvas implements IContainer2 {
 		this.figure2ItemMap = new HashMap<>();
 		this.enableHideNodes = enableHideNodes;
 		this.subgraphFigures = new HashSet<>();
+		this.zoomListener = new ZoomGestureListener();
+		this.rotateListener = new RotateGestureListener();
 
 		this.addPaintListener(event -> {
 			if (shouldSheduleLayout) {
@@ -247,11 +258,8 @@ public class Graph extends FigureCanvas implements IContainer2 {
 				}
 			}
 		});
-		if ((style & (ZestStyles.GESTURES_DISABLED)) == 0) {
-			// Only add default gestures if not disabled by style bit
-			this.addGestureListener(new ZoomGestureListener());
-			this.addGestureListener(new RotateGestureListener());
-		}
+		this.addGestureListener(zoomListener);
+		this.addGestureListener(rotateListener);
 		this.addDisposeListener(event -> release());
 	}
 
@@ -357,6 +365,37 @@ public class Graph extends FigureCanvas implements IContainer2 {
 	 */
 	public int getNodeStyle() {
 		return nodeStyle;
+	}
+
+	/**
+	 * Sets the default graph style.
+	 *
+	 * @param style the graph style to set.
+	 * @since 1.15
+	 * @see ZestStyles
+	 */
+	public final void setGraphStyle(int style) {
+		// Remove old Gesture listeners (if not already disabled)
+		if (!ZestStyles.checkStyle(this.style, ZestStyles.GESTURES_DISABLED)) {
+			removeGestureListener(zoomListener);
+			removeGestureListener(rotateListener);
+		}
+		this.style = style;
+		// Add new Gesture listeners (if not disabled)
+		if (!ZestStyles.checkStyle(this.style, ZestStyles.GESTURES_DISABLED)) {
+			addGestureListener(zoomListener);
+			addGestureListener(rotateListener);
+		}
+	}
+
+	/**
+	 * Gets the default graph style.
+	 *
+	 * @return the default graph style
+	 * @since 1.15
+	 */
+	public final int getGraphStyle() {
+		return style;
 	}
 
 	/**

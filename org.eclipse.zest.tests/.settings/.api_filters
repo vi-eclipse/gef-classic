@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.zest.tests" version="2">
+    <resource path="src/org/eclipse/zest/tests/GraphTests.java" type="org.eclipse.zest.tests.GraphTests">
+        <filter id="640712815">
+            <message_arguments>
+                <message_argument value="Graph"/>
+                <message_argument value="GraphTests"/>
+                <message_argument value="getLayoutContext()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

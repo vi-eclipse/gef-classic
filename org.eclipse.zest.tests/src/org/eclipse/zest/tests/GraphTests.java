@@ -17,7 +17,9 @@ import org.eclipse.zest.core.widgets.Graph;
 import org.eclipse.zest.core.widgets.GraphConnection;
 import org.eclipse.zest.core.widgets.GraphItem;
 import org.eclipse.zest.core.widgets.GraphNode;
+import org.eclipse.zest.core.widgets.ZestStyles;
 import org.eclipse.zest.core.widgets.internal.ZestRootLayer;
+import org.eclipse.zest.layouts.interfaces.LayoutContext;
 
 import org.eclipse.draw2d.Figure;
 
@@ -137,4 +139,45 @@ public class GraphTests extends Assert {
 
 	}
 
+	/**
+	 * Check that the {@link ZestStyles#IGNORE_INVISIBLE_LAYOUT} style can be set
+	 * and used correctly.
+	 *
+	 * @See https://bugs.eclipse.org/bugs/show_bug.cgi?id=254584
+	 */
+	@Test
+	public void testInvisibleLayoutStyle() {
+		LayoutContext layoutContext = graph.getLayoutContext();
+		GraphNode node = graph.getNodes().get(0);
+		node.setVisible(false);
+		GraphConnection conn = graph.getConnections().get(0);
+		conn.setVisible(false);
+
+		assertEquals(layoutContext.getNodes().length, 2);
+		assertEquals(layoutContext.getConnections().length, 1);
+		assertEquals(layoutContext.getEntities().length, 2);
+		graph.setGraphStyle(ZestStyles.IGNORE_INVISIBLE_LAYOUT);
+		assertEquals(layoutContext.getNodes().length, 1);
+		assertEquals(layoutContext.getConnections().length, 0);
+		assertEquals(layoutContext.getEntities().length, 1);
+		graph.setGraphStyle(ZestStyles.NONE);
+		assertEquals(layoutContext.getNodes().length, 2);
+		assertEquals(layoutContext.getConnections().length, 1);
+		assertEquals(layoutContext.getEntities().length, 2);
+	}
+
+	/**
+	 * Check that the {@link ZestStyles#GESTURES_DISABLED} style can be set and used
+	 * correctly.
+	 *
+	 * @See https://bugs.eclipse.org/bugs/show_bug.cgi?id=254584
+	 */
+	@Test
+	public void testGestureStyle() {
+		assertEquals(graph.getListeners(SWT.Gesture).length, 2);
+		graph.setGraphStyle(ZestStyles.GESTURES_DISABLED);
+		assertEquals(graph.getListeners(SWT.Gesture).length, 0);
+		graph.setGraphStyle(ZestStyles.NONE);
+		assertEquals(graph.getListeners(SWT.Gesture).length, 2);
+	}
 }

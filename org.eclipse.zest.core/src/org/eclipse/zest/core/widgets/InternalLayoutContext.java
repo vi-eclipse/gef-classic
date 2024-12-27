@@ -314,6 +314,9 @@ class InternalLayoutContext implements LayoutContext {
 				return true;
 			}
 		}
+		if (!item.isVisible()) {
+			return ZestStyles.checkStyle(container.getGraph().getGraphStyle(), ZestStyles.IGNORE_INVISIBLE_LAYOUT);
+		}
 		return false;
 	}
 

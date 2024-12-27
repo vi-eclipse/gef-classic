@@ -5,6 +5,7 @@
 ## GEF
 
 ## Zest
+- The Zest Graph style have to be set via the `setGraphStyle()` method rather than the constructor. Reason being that otherwise, the same style is used to initialize the underlying `FigureCanvas`.
 
 # GEF Classic 3.22.0
 
