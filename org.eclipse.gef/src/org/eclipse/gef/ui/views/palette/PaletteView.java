@@ -20,6 +20,7 @@ import org.eclipse.ui.IPerspectiveListener;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.part.IPage;
+import org.eclipse.ui.part.IPageBookViewPage;
 import org.eclipse.ui.part.MessagePage;
 import org.eclipse.ui.part.PageBook;
 import org.eclipse.ui.part.PageBookView;
@@ -100,8 +101,8 @@ public class PaletteView extends PageBookView {
 	 */
 	@Override
 	protected PageRec doCreatePage(IWorkbenchPart part) {
-		// Try to get a custom palette page
-		PalettePage page = part.getAdapter(PalettePage.class);
+		// Try to get a custom palette page (note: page might not implement PalettePage)
+		IPageBookViewPage page = part.getAdapter(PalettePage.class);
 
 		if (page != null) {
 			page.createControl(getPageBook());
