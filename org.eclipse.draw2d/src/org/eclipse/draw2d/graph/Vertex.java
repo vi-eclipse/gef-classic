@@ -56,7 +56,7 @@ class Vertex extends Point {
 	Map<Path, Double> cachedCosines;
 	int positionOnObstacle = -1;
 
-	private int origX, origY;
+	private final int origX, origY;
 
 	/**
 	 * Creates a new Vertex with the given x, y position and on the given obstacle.

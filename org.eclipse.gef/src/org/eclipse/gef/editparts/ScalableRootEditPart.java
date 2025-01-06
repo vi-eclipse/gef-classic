@@ -124,7 +124,7 @@ public class ScalableRootEditPart extends SimpleRootEditPart implements LayerCon
 	private LayeredPane innerLayers;
 	private LayeredPane printableLayers;
 	private ScalableLayeredPane scaledLayers;
-	private PropertyChangeListener gridListener = (PropertyChangeEvent evt) -> {
+	private final PropertyChangeListener gridListener = (PropertyChangeEvent evt) -> {
 		String property = evt.getPropertyName();
 		if (property.equals(SnapToGrid.PROPERTY_GRID_ORIGIN) || property.equals(SnapToGrid.PROPERTY_GRID_SPACING)
 				|| property.equals(SnapToGrid.PROPERTY_GRID_VISIBLE)) {

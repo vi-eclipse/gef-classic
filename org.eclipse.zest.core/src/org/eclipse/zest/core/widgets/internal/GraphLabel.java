@@ -41,7 +41,7 @@ public class GraphLabel extends CachedLabel implements IStyleableFigure {
 	private int borderWidth;
 	private int arcWidth;
 
-	private boolean painting = false;
+	private final boolean painting = false;
 
 	/**
 	 * Creates a GraphLabel

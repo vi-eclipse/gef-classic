@@ -43,9 +43,9 @@ public class PolygonDecoration extends Polygon implements RotatableDecoration {
 		INVERTED_TRIANGLE_TIP.addPoint(-1, 0);
 	}
 
-	private Point location = new Point();
+	private final Point location = new Point();
 	private PointList template = TRIANGLE_TIP;
-	private Transform transform = new Transform();
+	private final Transform transform = new Transform();
 
 	/**
 	 * Constructs a PolygonDecoration. Defaults the PolygonDecoration to fill its

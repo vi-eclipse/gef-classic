@@ -82,7 +82,7 @@ public class AligningBendpointLocator extends AbstractLocator {
 	public static final int CENTER_END = 4;
 	private int horizontal;
 	private int vertical;
-	private Connection connection;
+	private final Connection connection;
 
 	/**
 	 * @param connection

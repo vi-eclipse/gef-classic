@@ -44,7 +44,7 @@ import org.eclipse.draw2d.text.TextFlow;
  */
 public final class MultiLineLabel extends FigureCanvas {
 
-	private TextFlow textFlow;
+	private final TextFlow textFlow;
 	static final Border MARGIN = new MarginBorder(2);
 	private Image image;
 

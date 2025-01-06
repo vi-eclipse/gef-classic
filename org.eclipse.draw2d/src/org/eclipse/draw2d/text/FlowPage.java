@@ -28,9 +28,9 @@ import org.eclipse.draw2d.geometry.Rectangle;
  */
 public class FlowPage extends BlockFlow {
 
-	private Dimension pageSize = new Dimension();
+	private final Dimension pageSize = new Dimension();
 	private int recommendedWidth;
-	private int pageSizeCacheKeys[] = new int[3];
+	private final int pageSizeCacheKeys[] = new int[3];
 	private Dimension pageSizeCacheValues[] = new Dimension[3];
 
 	/**

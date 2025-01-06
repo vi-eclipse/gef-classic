@@ -20,7 +20,7 @@ import org.eclipse.draw2d.geometry.Point;
  */
 public class MidpointLocator extends ConnectionLocator {
 
-	private int index;
+	private final int index;
 
 	/**
 	 * Constructs a MidpointLocator with associated Connection <i>c</i> and index

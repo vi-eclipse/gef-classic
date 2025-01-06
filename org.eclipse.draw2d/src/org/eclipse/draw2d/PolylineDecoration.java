@@ -31,9 +31,9 @@ public class PolylineDecoration extends Polyline implements RotatableDecoration 
 		TRIANGLE_TIP.addPoint(-1, -1);
 	}
 
-	private Point location = new Point();
+	private final Point location = new Point();
 	private PointList template = TRIANGLE_TIP;
-	private Transform transform = new Transform();
+	private final Transform transform = new Transform();
 
 	/**
 	 * Constructs a PolylineDecoration. Defaults the PolylineDecoration to fill its

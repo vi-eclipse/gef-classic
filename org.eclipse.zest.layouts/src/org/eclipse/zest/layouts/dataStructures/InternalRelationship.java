@@ -33,11 +33,11 @@ import org.eclipse.zest.layouts.constraints.LayoutConstraint;
 @Deprecated(since = "2.0", forRemoval = true)
 public class InternalRelationship implements LayoutRelationship {
 
-	private LayoutRelationship externalRelationship;
-	private InternalNode source;
-	private InternalNode destination;
+	private final LayoutRelationship externalRelationship;
+	private final InternalNode source;
+	private final InternalNode destination;
 	private Object layoutInfo;
-	private List<BendPoint> bendPoints = new LinkedList<>();
+	private final List<BendPoint> bendPoints = new LinkedList<>();
 	BasicEdgeConstraints basicEdgeConstraints = new BasicEdgeConstraints();
 
 	public InternalRelationship(LayoutRelationship externalRelationship, InternalNode source,

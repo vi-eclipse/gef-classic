@@ -24,7 +24,7 @@ import org.eclipse.gef.internal.ui.palette.InternalPaletteSettingsDialog;
  */
 public class SettingsAction extends Action {
 
-	private PaletteViewer paletteViewer;
+	private final PaletteViewer paletteViewer;
 
 	/**
 	 * Constructor

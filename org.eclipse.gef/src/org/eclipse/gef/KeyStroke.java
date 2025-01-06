@@ -98,9 +98,9 @@ public class KeyStroke {
 		return new KeyStroke(character, keyCode, stateMask, false);
 	}
 
-	private int stateMask;
+	private final int stateMask;
 	private char character;
-	private boolean onPressed;
+	private final boolean onPressed;
 	private int keyCode;
 
 	/**

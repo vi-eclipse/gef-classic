@@ -30,7 +30,7 @@ import org.eclipse.gef.internal.GEFMessages;
  */
 public class ToggleGridAction extends Action {
 
-	private GraphicalViewer diagramViewer;
+	private final GraphicalViewer diagramViewer;
 
 	/**
 	 * Constructor

@@ -27,7 +27,7 @@ public class TextFragmentBox extends ContentBox {
 	 */
 	public int offset;
 
-	private TextFlow textflow;
+	private final TextFlow textflow;
 	private boolean truncated;
 
 	/**

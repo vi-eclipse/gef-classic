@@ -27,7 +27,7 @@ class BufferedGraphicsSource implements GraphicsSource {
 	private Image imageBuffer;
 	private GC imageGC;
 	private GC controlGC;
-	private Control control;
+	private final Control control;
 	private Rectangle inUse;
 
 	/**

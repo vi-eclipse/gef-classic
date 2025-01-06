@@ -58,10 +58,10 @@ public class ZoomContributionViewItem extends ContributionItem implements ZoomLi
 	public static final String FIT_ALL = ZoomManager.FIT_ALL;
 
 	private String[] zoomLevels;
-	private ZoomManager zoomManager;
+	private final ZoomManager zoomManager;
 	private Combo combo;
 	private Menu fMenu;
-	private MenuAdapter menuAdapter = new MenuAdapter() {
+	private final MenuAdapter menuAdapter = new MenuAdapter() {
 		@Override
 		public void menuShown(MenuEvent e) {
 			refresh(true);

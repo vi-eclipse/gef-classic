@@ -19,7 +19,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
  */
 public class FreeformLayer extends Layer implements FreeformFigure {
 
-	private FreeformHelper helper = new FreeformHelper(this);
+	private final FreeformHelper helper = new FreeformHelper(this);
 
 	/**
 	 * @see IFigure#add(IFigure, Object, int)

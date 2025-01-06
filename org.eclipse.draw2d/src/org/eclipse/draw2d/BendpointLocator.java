@@ -22,7 +22,7 @@ import org.eclipse.draw2d.geometry.Point;
  */
 public class BendpointLocator extends ConnectionLocator {
 
-	private int index;
+	private final int index;
 
 	/**
 	 * Creates a BendpointLocator associated with passed Connection c and index i.

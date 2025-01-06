@@ -40,7 +40,7 @@ public class RulerRootEditPart extends SimpleRootEditPart {
 	private static final Insets VERTICAL_THRESHOLD = new Insets(18, 0, 18, 0);
 	private static final Insets HORIZONTAL_THRESHOLD = new Insets(0, 18, 0, 18);
 
-	private boolean horizontal;
+	private final boolean horizontal;
 
 	/**
 	 * Constructor

@@ -25,7 +25,7 @@ import java.util.List;
  */
 public abstract class AbstractImageFigure extends Figure implements IImageFigure {
 
-	private List<ImageChangedListener> imageListeners = new ArrayList<>();
+	private final List<ImageChangedListener> imageListeners = new ArrayList<>();
 
 	@Override
 	public final void addImageChangedListener(ImageChangedListener listener) {

@@ -42,7 +42,7 @@ public class PaletteView extends PageBookView {
 	 */
 	public static final String ID = "org.eclipse.gef.ui.palette_view"; //$NON-NLS-1$
 
-	private IPerspectiveListener perspectiveListener = new IPerspectiveListener() {
+	private final IPerspectiveListener perspectiveListener = new IPerspectiveListener() {
 		@Override
 		public void perspectiveChanged(IWorkbenchPage page, IPerspectiveDescriptor perspective, String changeId) {
 		}

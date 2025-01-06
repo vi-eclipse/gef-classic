@@ -40,7 +40,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 public class GhostImageFigure extends Figure {
 
 	private int alpha = -1;
-	private ImageData ghostImageData;
+	private final ImageData ghostImageData;
 
 	/**
 	 * The single constructor.

@@ -31,15 +31,15 @@ import org.eclipse.draw2d.geometry.Rectangle;
 public class HideNodeHelper extends ContainerFigure {
 	public static final int MARGIN = 5;
 
-	private GraphNode node;
+	private final GraphNode node;
 
-	private Button hideButton = new Button("-"); //$NON-NLS-1$
-	private Button revealButton = new Button("+"); //$NON-NLS-1$
+	private final Button hideButton = new Button("-"); //$NON-NLS-1$
+	private final Button revealButton = new Button("+"); //$NON-NLS-1$
 	private int hiddenNodeCount = 0;
-	private GraphLabel hiddenNodesLabel = new GraphLabel("0", false); //$NON-NLS-1$
+	private final GraphLabel hiddenNodesLabel = new GraphLabel("0", false); //$NON-NLS-1$
 
-	private HideNodeListener thisHideNodeListener;
-	private List<HideNodeListener> hideNodeListeners = new ArrayList<>();
+	private final HideNodeListener thisHideNodeListener;
+	private final List<HideNodeListener> hideNodeListeners = new ArrayList<>();
 
 	/**
 	 * Create a HideNodeHelper and add it to the node's nodeFigure
@@ -181,7 +181,7 @@ public class HideNodeHelper extends ContainerFigure {
 	}
 
 	class HideNodeListener {
-		private GraphNode node;
+		private final GraphNode node;
 
 		public HideNodeListener(GraphNode node) {
 			this.node = node;

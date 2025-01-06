@@ -28,7 +28,7 @@ import org.eclipse.gef.internal.GEFMessages;
  */
 public class SelectAllAction extends Action {
 
-	private IWorkbenchPart part;
+	private final IWorkbenchPart part;
 
 	/**
 	 * Constructs a <code>SelectAllAction</code> and associates it with the given

@@ -19,7 +19,7 @@ import org.eclipse.swt.SWT;
  */
 public abstract class InputEvent extends java.util.EventObject {
 
-	private int state;
+	private final int state;
 
 	private boolean consumed = false;
 

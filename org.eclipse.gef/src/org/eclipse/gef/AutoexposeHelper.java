@@ -89,7 +89,7 @@ public interface AutoexposeHelper {
 		/**
 		 * the result of the search.
 		 */
-		private Point where;
+		private final Point where;
 		public AutoexposeHelper result;
 
 		@Override

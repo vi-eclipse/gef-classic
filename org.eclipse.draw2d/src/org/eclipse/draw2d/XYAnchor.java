@@ -20,7 +20,7 @@ import org.eclipse.draw2d.geometry.Point;
  */
 public class XYAnchor extends ConnectionAnchorBase {
 
-	private Point location;
+	private final Point location;
 
 	/**
 	 * Constructs an XYAnchor at the Point p.

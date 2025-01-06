@@ -43,7 +43,7 @@ public class ExpandGraphLabel extends Figure implements ActionListener {
 	private Expander expander = null;
 
 	class Expander extends Clickable {
-		private Triangle triangle;
+		private final Triangle triangle;
 
 		public Expander() {
 			setStyle(Clickable.STYLE_TOGGLE);
@@ -101,10 +101,10 @@ public class ExpandGraphLabel extends Figure implements ActionListener {
 		}
 	}
 
-	private int arcWidth;
+	private final int arcWidth;
 	private Label label = null;
 	private final GraphContainer container;
-	private ToolbarLayout layout;
+	private final ToolbarLayout layout;
 
 	public ExpandGraphLabel(GraphContainer container, boolean cacheLabel) {
 		this(container, "", null, cacheLabel); //$NON-NLS-1$

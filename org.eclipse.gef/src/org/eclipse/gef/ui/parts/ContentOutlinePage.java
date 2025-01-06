@@ -34,7 +34,7 @@ import org.eclipse.gef.EditPartViewer;
 public class ContentOutlinePage extends org.eclipse.ui.part.Page
 		implements org.eclipse.ui.views.contentoutline.IContentOutlinePage {
 
-	private EditPartViewer viewer;
+	private final EditPartViewer viewer;
 	private Control control;
 
 	/**

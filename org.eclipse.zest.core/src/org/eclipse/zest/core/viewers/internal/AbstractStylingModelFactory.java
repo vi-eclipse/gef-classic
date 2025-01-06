@@ -46,7 +46,7 @@ import org.eclipse.draw2d.IFigure;
 // IStylingGraphModelFactory
 @SuppressWarnings("removal")
 public abstract class AbstractStylingModelFactory implements IStylingGraphModelFactory {
-	private AbstractStructuredGraphViewer viewer;
+	private final AbstractStructuredGraphViewer viewer;
 	private int connectionStyle;
 	private int nodeStyle;
 	private List<ConstraintAdapter> constraintAdapters = new ArrayList<>();

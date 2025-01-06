@@ -24,7 +24,7 @@ import org.eclipse.draw2d.geometry.PrecisionRectangle;
  */
 public class CompoundSnapToHelper extends SnapToHelper {
 
-	private SnapToHelper[] delegates;
+	private final SnapToHelper[] delegates;
 
 	/**
 	 * Constructs a compound snap to helper which will delegate to the provided

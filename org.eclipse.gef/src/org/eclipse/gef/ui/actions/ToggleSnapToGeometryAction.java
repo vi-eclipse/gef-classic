@@ -29,7 +29,7 @@ import org.eclipse.gef.internal.GEFMessages;
  */
 public class ToggleSnapToGeometryAction extends Action {
 
-	private GraphicalViewer diagramViewer;
+	private final GraphicalViewer diagramViewer;
 
 	/**
 	 * Constructor

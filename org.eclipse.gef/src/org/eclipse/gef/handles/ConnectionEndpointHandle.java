@@ -36,7 +36,7 @@ public class ConnectionEndpointHandle extends ConnectionHandle {
 	 * Caches whether the handle is for the source or target endpoint. endPoint is
 	 * either {@link ConnectionLocator#SOURCE} or {@link ConnectionLocator#TARGET}.
 	 */
-	private int endPoint;
+	private final int endPoint;
 
 	/**
 	 * Creates a new ConnectionStartHandle, sets its owner to <code>owner</code> ,

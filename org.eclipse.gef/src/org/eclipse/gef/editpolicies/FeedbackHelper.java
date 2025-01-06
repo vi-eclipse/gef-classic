@@ -26,7 +26,7 @@ import org.eclipse.draw2d.geometry.Point;
 public class FeedbackHelper {
 
 	private Connection connection;
-	private XYAnchor dummyAnchor;
+	private final XYAnchor dummyAnchor;
 	private boolean isMovingStartAnchor = false;
 
 	/**

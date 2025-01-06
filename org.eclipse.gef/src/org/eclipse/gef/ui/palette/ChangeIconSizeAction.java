@@ -22,7 +22,7 @@ import org.eclipse.jface.action.Action;
  */
 public class ChangeIconSizeAction extends Action {
 
-	private PaletteViewerPreferences prefs;
+	private final PaletteViewerPreferences prefs;
 
 	/**
 	 * Constructor

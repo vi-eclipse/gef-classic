@@ -25,7 +25,7 @@ import org.eclipse.gef.ui.palette.editparts.IPinnableEditPart;
  */
 public class PinDrawerAction extends Action {
 
-	private IPinnableEditPart pinnableEditPart;
+	private final IPinnableEditPart pinnableEditPart;
 
 	/**
 	 * Constructor

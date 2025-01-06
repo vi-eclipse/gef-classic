@@ -31,7 +31,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 public class FlowAdapter extends FlowFigure {
 
 	private FlowContext context;
-	private FigureBox box = new FigureBox();
+	private final FigureBox box = new FigureBox();
 
 	/**
 	 * This FlowFigure contributes an Object Replacement Character.
