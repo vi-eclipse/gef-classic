@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010, 2024 Fabian Steeg and others.
+ * Copyright (c) 2010, 2025 Fabian Steeg and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -11,10 +11,15 @@
  *******************************************************************************/
 package org.eclipse.zest.tests;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Event;
@@ -24,7 +29,6 @@ import org.eclipse.zest.core.widgets.Graph;
 import org.eclipse.zest.core.widgets.GraphConnection;
 import org.eclipse.zest.core.widgets.GraphNode;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -34,9 +38,7 @@ import org.junit.Test;
  * @author Fabian Steeg (fsteeg)
  *
  */
-public class GraphSelectionTests extends Assert {
-
-	private static final int STYLE = SWT.NONE;
+public class GraphSelectionTests {
 
 	private GraphNode[] nodes;
 
@@ -44,9 +46,9 @@ public class GraphSelectionTests extends Assert {
 
 	@Before
 	public void setUp() throws Exception {
-		graph = new Graph(new Shell(), STYLE);
-		nodes = new GraphNode[] { new GraphNode(graph, STYLE), new GraphNode(graph, STYLE) };
-		new GraphConnection(graph, STYLE, nodes[0], nodes[1]);
+		graph = new Graph(new Shell(), SWT.NONE);
+		nodes = new GraphNode[] { new GraphNode(graph, SWT.NONE), new GraphNode(graph, SWT.NONE) };
+		new GraphConnection(graph, SWT.NONE, nodes[0], nodes[1]);
 	}
 
 	@Test
@@ -152,14 +154,10 @@ public class GraphSelectionTests extends Assert {
 	}
 
 	private static SelectionListener setupListener(final List<SelectionEvent> events) {
-		return new SelectionListener() {
+		return new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				events.add(e);
-			}
-
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		};
 	}

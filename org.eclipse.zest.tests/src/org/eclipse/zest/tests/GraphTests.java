@@ -1,12 +1,18 @@
 /*******************************************************************************
- * Copyright (c) 2011 Fabian Steeg. All rights reserved. This program and
- * the accompanying materials are made available under the terms of the Eclipse
- * Public License v1.0 which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * <p/>
+ * Copyright (c) 2011, 2025 Fabian Steeg. All rights reserved.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
  * Contributors: Fabian Steeg - initial tests
  *******************************************************************************/
 package org.eclipse.zest.tests;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -23,7 +29,6 @@ import org.eclipse.zest.layouts.interfaces.LayoutContext;
 
 import org.eclipse.draw2d.Figure;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,9 +38,7 @@ import org.junit.Test;
  * @author Fabian Steeg (fsteeg)
  *
  */
-public class GraphTests extends Assert {
-
-	private static final int STYLE = SWT.NONE;
+public class GraphTests {
 
 	private GraphNode[] nodes;
 
@@ -48,9 +51,9 @@ public class GraphTests extends Assert {
 	@Before
 	public void setUp() throws Exception {
 		shell = new Shell();
-		graph = new Graph(shell, STYLE);
-		nodes = new GraphNode[] { new GraphNode(graph, STYLE), new GraphNode(graph, STYLE) };
-		connection = new GraphConnection(graph, STYLE, nodes[0], nodes[1]);
+		graph = new Graph(shell, SWT.NONE);
+		nodes = new GraphNode[] { new GraphNode(graph, SWT.NONE), new GraphNode(graph, SWT.NONE) };
+		connection = new GraphConnection(graph, SWT.NONE, nodes[0], nodes[1]);
 	}
 
 	@Test
@@ -79,6 +82,7 @@ public class GraphTests extends Assert {
 	 * @See https://bugs.eclipse.org/bugs/show_bug.cgi?id=361541
 	 */
 	@Test
+	@SuppressWarnings("unchecked")
 	public void testDisposeGraphWithDisposedNode() {
 		nodes[0].dispose(); // removes the node from the graph's nodes list
 		((List<GraphNode>) graph.getNodes()).add(nodes[0]); // but we're malicious and add it back
@@ -93,6 +97,7 @@ public class GraphTests extends Assert {
 	 * @See https://bugs.eclipse.org/bugs/show_bug.cgi?id=361541
 	 */
 	@Test
+	@SuppressWarnings("unchecked")
 	public void testDisposeGraphWithDisposedConnection() {
 		connection.dispose();
 		((List<GraphConnection>) graph.getConnections()).add(connection);
@@ -103,7 +108,7 @@ public class GraphTests extends Assert {
 
 	/**
 	 * Avoid issues when un-highlighting non-existent nodes on
-	 * {@link #ZestRootLayer}.
+	 * {@link ZestRootLayer}.
 	 *
 	 * @See https://bugs.eclipse.org/bugs/show_bug.cgi?id=361525
 	 */
@@ -115,7 +120,7 @@ public class GraphTests extends Assert {
 
 	/**
 	 * Avoid issues when un-highlighting non-existent connections on
-	 * {@link #ZestRootLayer}.
+	 * {@link ZestRootLayer}.
 	 *
 	 * @See https://bugs.eclipse.org/bugs/show_bug.cgi?id=361525
 	 */

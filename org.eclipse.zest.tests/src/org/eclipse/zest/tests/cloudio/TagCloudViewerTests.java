@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011, 2024 Stephan Schwiebert and others.
+ * Copyright (c) 2011, 2025 Stephan Schwiebert and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,6 +10,10 @@
  * Contributors: Stephan Schwiebert - initial API and implementation
  *******************************************************************************/
 package org.eclipse.zest.tests.cloudio;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +27,11 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.jface.viewers.BaseLabelProvider;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.zest.cloudio.TagCloud;
 import org.eclipse.zest.cloudio.TagCloudViewer;
 import org.eclipse.zest.cloudio.Word;
 import org.eclipse.zest.cloudio.layout.DefaultLayouter;
 
-import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -61,6 +63,7 @@ public class TagCloudViewerTests {
 		}
 	}
 
+	@SuppressWarnings("static-method")
 	@Test(expected = IllegalArgumentException.class)
 	public void testConstructor_NullCloud() {
 		new TagCloudViewer(null);
@@ -76,10 +79,10 @@ public class TagCloudViewerTests {
 	public void testConstructor_ValidCloud() {
 		TagCloudViewer viewer = new TagCloudViewer(cloud);
 		TagCloud cloud = viewer.getCloud();
-		Assert.assertNotNull(cloud);
-		Assert.assertEquals(this.cloud, cloud);
-		Assert.assertTrue(viewer.getSelection() != null);
-		Assert.assertTrue(viewer.getSelection().isEmpty());
+		assertNotNull(cloud);
+		assertEquals(this.cloud, cloud);
+		assertTrue(viewer.getSelection() != null);
+		assertTrue(viewer.getSelection().isEmpty());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -99,7 +102,7 @@ public class TagCloudViewerTests {
 		TagCloudViewer viewer = new TagCloudViewer(cloud);
 		TestLabelProvider labelProvider = new TestLabelProvider();
 		viewer.setLabelProvider(labelProvider);
-		Assert.assertEquals(labelProvider, viewer.getLabelProvider());
+		assertEquals(labelProvider, viewer.getLabelProvider());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -112,25 +115,10 @@ public class TagCloudViewerTests {
 	public void testInvalidContentProvider2() {
 		TagCloudViewer viewer = new TagCloudViewer(cloud);
 		viewer.setContentProvider(new IContentProvider() {
-			@Override
-			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-			}
-
-			@Override
-			public void dispose() {
-			}
 		});
 	}
 
 	private static class ListContentProvider implements ITreeContentProvider {
-
-		@Override
-		public void dispose() {
-		}
-
-		@Override
-		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		}
 
 		@Override
 		public Object[] getElements(Object inputElement) {
@@ -159,7 +147,7 @@ public class TagCloudViewerTests {
 		TagCloudViewer viewer = new TagCloudViewer(cloud);
 		ListContentProvider provider = new ListContentProvider();
 		viewer.setContentProvider(provider);
-		Assert.assertEquals(provider, viewer.getContentProvider());
+		assertEquals(provider, viewer.getContentProvider());
 	}
 
 	@Test
@@ -170,21 +158,21 @@ public class TagCloudViewerTests {
 		TestLabelProvider labelProvider = new TestLabelProvider();
 		viewer.setLabelProvider(labelProvider);
 		List<String> data = new ArrayList<>();
-		data.add("Hello");
-		data.add("World");
+		data.add("Hello"); //$NON-NLS-1$
+		data.add("World"); //$NON-NLS-1$
 		viewer.setInput(data);
 		List<Word> words = viewer.getCloud().getWords();
 		for (Word word : words) {
-			Assert.assertEquals(TestLabelProvider.COLOR, word.getColor());
+			assertEquals(TestLabelProvider.COLOR, word.getColor());
 			for (int i = 0; i < TestLabelProvider.FONT_DATA.length; i++) {
-				Assert.assertEquals(TestLabelProvider.FONT_DATA[i], word.getFontData()[i]);
+				assertEquals(TestLabelProvider.FONT_DATA[i], word.getFontData()[i]);
 			}
-			Assert.assertEquals(TestLabelProvider.ANGLE, word.angle);
-			Assert.assertEquals(TestLabelProvider.WEIGHT, word.weight);
-			Assert.assertTrue(word.x != 0);
-			Assert.assertTrue(word.y != 0);
-			Assert.assertTrue(word.width != 0);
-			Assert.assertTrue(word.height != 0);
+			assertEquals(TestLabelProvider.ANGLE, word.angle, 0.01);
+			assertEquals(TestLabelProvider.WEIGHT, word.weight, 0.01);
+			assertTrue(word.x != 0);
+			assertTrue(word.y != 0);
+			assertTrue(word.width != 0);
+			assertTrue(word.height != 0);
 		}
 	}
 
@@ -199,7 +187,7 @@ public class TagCloudViewerTests {
 		TagCloudViewer viewer = new TagCloudViewer(cloud);
 		DefaultLayouter layouter = new DefaultLayouter(5, 5);
 		viewer.setLayouter(layouter);
-		Assert.assertEquals(layouter, viewer.getLayouter());
+		assertEquals(layouter, viewer.getLayouter());
 	}
 
 }

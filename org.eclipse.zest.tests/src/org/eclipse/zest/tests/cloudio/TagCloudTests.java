@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011, 2024 Stephan Schwiebert and others.
+ * Copyright (c) 2011, 2025 Stephan Schwiebert and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,6 +10,11 @@
  * Contributors: Stephan Schwiebert - initial API and implementation
  *******************************************************************************/
 package org.eclipse.zest.tests.cloudio;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +41,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.zest.cloudio.TagCloud;
 import org.eclipse.zest.cloudio.Word;
 
-import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -68,6 +72,7 @@ public class TagCloudTests {
 
 	// Lifecycle:
 
+	@SuppressWarnings("static-method")
 	@Test(expected = IllegalArgumentException.class)
 	public void testConstructor_NullParent() {
 		new TagCloud(null, SWT.NONE);
@@ -76,14 +81,14 @@ public class TagCloudTests {
 	@Test
 	public void testConstructor_ValidParent() {
 		TagCloud cloud = new TagCloud(composite, SWT.NONE);
-		Assert.assertNotNull(cloud);
+		assertNotNull(cloud);
 	}
 
 	@Test
 	public void testDispose() {
 		TagCloud cloud = new TagCloud(composite, SWT.NONE);
 		cloud.dispose();
-		Assert.assertTrue(cloud.isDisposed());
+		assertTrue(cloud.isDisposed());
 	}
 
 	// Background Color:
@@ -99,13 +104,13 @@ public class TagCloudTests {
 		TagCloud cloud = new TagCloud(composite, SWT.NONE);
 		Color color = Display.getCurrent().getSystemColor(SWT.COLOR_RED);
 		cloud.setBackground(color);
-		Assert.assertEquals(color, cloud.getBackground());
+		assertEquals(color, cloud.getBackground());
 	}
 
 	@Test
 	public void testDefaultBackgroundColor() {
 		TagCloud cloud = new TagCloud(composite, SWT.NONE);
-		Assert.assertNotNull(cloud.getBackground());
+		assertNotNull(cloud.getBackground());
 	}
 
 	// Selection Color:
@@ -121,13 +126,13 @@ public class TagCloudTests {
 		TagCloud cloud = new TagCloud(composite, SWT.NONE);
 		Color color = Display.getCurrent().getSystemColor(SWT.COLOR_RED);
 		cloud.setSelectionColor(color);
-		Assert.assertEquals(color, cloud.getSelectionColor());
+		assertEquals(color, cloud.getSelectionColor());
 	}
 
 	@Test
 	public void testDefaultSelectionColor() {
 		TagCloud cloud = new TagCloud(composite, SWT.NONE);
-		Assert.assertNotNull(cloud.getSelectionColor());
+		assertNotNull(cloud.getSelectionColor());
 	}
 
 	// Font Size:
@@ -149,7 +154,7 @@ public class TagCloudTests {
 		TagCloud cloud = new TagCloud(composite, SWT.NONE);
 		int size = cloud.getMaxFontSize() + 1;
 		cloud.setMaxFontSize(size * 2);
-		Assert.assertEquals(size * 2, cloud.getMaxFontSize());
+		assertEquals(size * 2, cloud.getMaxFontSize());
 	}
 
 	@Test
@@ -157,7 +162,7 @@ public class TagCloudTests {
 		TagCloud cloud = new TagCloud(composite, SWT.NONE);
 		int size = cloud.getMinFontSize() + 1;
 		cloud.setMinFontSize(size * 2);
-		Assert.assertEquals(size * 2, cloud.getMinFontSize());
+		assertEquals(size * 2, cloud.getMinFontSize());
 	}
 
 	// Set Words:
@@ -180,7 +185,7 @@ public class TagCloudTests {
 	public void testSetIllegalWords3() {
 		TagCloud cloud = new TagCloud(composite, SWT.NONE);
 		List<Word> words = new ArrayList<>();
-		Word w = new Word("Word");
+		Word w = new Word("Word"); //$NON-NLS-1$
 		w.setFontData(composite.getFont().getFontData());
 		w.weight = Math.random();
 		words.add(w);
@@ -191,7 +196,7 @@ public class TagCloudTests {
 	public void testSetIllegalWords4() {
 		TagCloud cloud = new TagCloud(composite, SWT.NONE);
 		List<Word> words = new ArrayList<>();
-		Word w = new Word("Word");
+		Word w = new Word("Word"); //$NON-NLS-1$
 		w.setColor(Display.getDefault().getSystemColor(SWT.COLOR_RED));
 		w.weight = Math.random();
 		words.add(w);
@@ -248,7 +253,7 @@ public class TagCloudTests {
 	}
 
 	private Word getWord() {
-		Word w = new Word("Word");
+		Word w = new Word("Word"); //$NON-NLS-1$
 		w.setColor(Display.getDefault().getSystemColor(SWT.COLOR_GRAY));
 		w.setFontData(composite.getFont().getFontData());
 		w.weight = 1;
@@ -260,7 +265,7 @@ public class TagCloudTests {
 		TagCloud cloud = new TagCloud(composite, SWT.NONE);
 		List<Word> words = new ArrayList<>();
 		int placed = cloud.setWords(words, null);
-		Assert.assertEquals(0, placed);
+		assertEquals(0, placed);
 	}
 
 	@Test
@@ -271,7 +276,7 @@ public class TagCloudTests {
 			words.add(getWord());
 		}
 		int placed = cloud.setWords(words, null);
-		Assert.assertEquals(10, placed);
+		assertEquals(10, placed);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -302,7 +307,7 @@ public class TagCloudTests {
 		cloud.setWords(Arrays.asList(getWord()), null);
 		double zoom = cloud.getZoom();
 		cloud.zoomIn();
-		Assert.assertTrue(cloud.getZoom() > zoom);
+		assertTrue(cloud.getZoom() > zoom);
 	}
 
 	@Test
@@ -311,8 +316,8 @@ public class TagCloudTests {
 		cloud.setWords(Arrays.asList(getWord()), null);
 		double zoom = cloud.getZoom();
 		cloud.zoomReset();
-		Assert.assertTrue(cloud.getZoom() > zoom);
-		Assert.assertEquals(cloud.getZoom(), 1.0);
+		assertTrue(cloud.getZoom() > zoom);
+		assertEquals(cloud.getZoom(), 1.0, 0.01);
 	}
 
 	@Test
@@ -322,7 +327,7 @@ public class TagCloudTests {
 		cloud.zoomReset();
 		double zoom = cloud.getZoom();
 		cloud.zoomOut();
-		Assert.assertTrue(cloud.getZoom() < zoom);
+		assertTrue(cloud.getZoom() < zoom);
 	}
 
 	@Test
@@ -332,7 +337,7 @@ public class TagCloudTests {
 		cloud.zoomReset();
 		double zoom = cloud.getZoom();
 		cloud.zoomFit();
-		Assert.assertTrue(cloud.getZoom() < zoom);
+		assertTrue(cloud.getZoom() < zoom);
 		// TODO: Test if the cloud really fits the area!
 	}
 
@@ -341,7 +346,7 @@ public class TagCloudTests {
 	@Test
 	public void testGetImageData() {
 		TagCloud cloud = new TagCloud(composite, SWT.NONE);
-		Assert.assertNotNull(cloud.getImageData());
+		assertNotNull(cloud.getImageData());
 	}
 
 	// Test Selection
@@ -350,8 +355,8 @@ public class TagCloudTests {
 	public void testInitialSelection() {
 		TagCloud cloud = new TagCloud(composite, SWT.NONE);
 		Set<Word> selection = cloud.getSelection();
-		Assert.assertNotNull(selection);
-		Assert.assertTrue(selection.isEmpty());
+		assertNotNull(selection);
+		assertTrue(selection.isEmpty());
 	}
 
 	@Test
@@ -365,10 +370,10 @@ public class TagCloudTests {
 		sel.add(words.get(0));
 		cloud.setSelection(sel);
 		Set<Word> selection = cloud.getSelection();
-		Assert.assertEquals(sel, selection);
+		assertEquals(sel, selection);
 		cloud.setSelection(new HashSet<>());
 		selection = cloud.getSelection();
-		Assert.assertTrue(selection.isEmpty());
+		assertTrue(selection.isEmpty());
 	}
 
 	@Test
@@ -382,7 +387,7 @@ public class TagCloudTests {
 		sel.add(getWord());
 		cloud.setSelection(sel);
 		Set<Word> selection = cloud.getSelection();
-		Assert.assertTrue(selection.isEmpty());
+		assertTrue(selection.isEmpty());
 	}
 
 	@Test
@@ -392,7 +397,7 @@ public class TagCloudTests {
 		sel.add(getWord());
 		cloud.setSelection(sel);
 		Set<Word> selection = cloud.getSelection();
-		Assert.assertTrue(selection.isEmpty());
+		assertTrue(selection.isEmpty());
 	}
 
 	// Boost
@@ -406,9 +411,9 @@ public class TagCloudTests {
 	@Test
 	public void testSetValidBoost() {
 		TagCloud cloud = new TagCloud(composite, SWT.NONE);
-		Assert.assertEquals(0, cloud.getBoost());
+		assertEquals(0, cloud.getBoost());
 		cloud.setBoost(3);
-		Assert.assertEquals(3, cloud.getBoost());
+		assertEquals(3, cloud.getBoost());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -421,9 +426,9 @@ public class TagCloudTests {
 	public void testSetValidBoostFactor() {
 		TagCloud cloud = new TagCloud(composite, SWT.NONE);
 		cloud.setBoostFactor(3.3F);
-		Assert.assertEquals(3.3F, cloud.getBoostFactor());
+		assertEquals(3.3F, cloud.getBoostFactor(), 0.01);
 		cloud.setBoostFactor(-2.2F);
-		Assert.assertEquals(-2.2F, cloud.getBoostFactor());
+		assertEquals(-2.2F, cloud.getBoostFactor(), 0.01);
 	}
 
 	@Test
@@ -435,15 +440,15 @@ public class TagCloudTests {
 		}
 		// Initial position must be 0/0
 		for (Word word : words) {
-			Assert.assertTrue(word.x == 0);
-			Assert.assertTrue(word.y == 0);
+			assertTrue(word.x == 0);
+			assertTrue(word.y == 0);
 		}
 		cloud.setWords(words, null);
 		List<Rectangle> rects = new ArrayList<>();
 		// Elements must have been placed
 		for (Word word : words) {
-			Assert.assertTrue(word.x != 0);
-			Assert.assertTrue(word.y != 0);
+			assertTrue(word.x != 0);
+			assertTrue(word.y != 0);
 			word.angle = 45f;
 			rects.add(new Rectangle(word.x, word.y, word.width, word.height));
 		}
@@ -461,9 +466,9 @@ public class TagCloudTests {
 			}
 		}
 		// Positions must have been changed
-		Assert.assertTrue(posChanged);
+		assertTrue(posChanged);
 		// Bounds must not have been changed
-		Assert.assertFalse(rectChanged);
+		assertFalse(rectChanged);
 		cloud.layoutCloud(null, true);
 		posChanged = false;
 		rectChanged = false;
@@ -478,8 +483,8 @@ public class TagCloudTests {
 			}
 		}
 		// Both positions an bounds must have changed
-		Assert.assertTrue(posChanged);
-		Assert.assertTrue(rectChanged);
+		assertTrue(posChanged);
+		assertTrue(rectChanged);
 	}
 
 	// @Test
@@ -501,9 +506,6 @@ public class TagCloudTests {
 		private int mouseDC;
 		private int mouseMove;
 		private int mouseScrolled;
-		private int mouseExit;
-		private int mouseEnter;
-		private int mouseHover;
 		private Set<Word> selection;
 
 		@Override
@@ -524,7 +526,7 @@ public class TagCloudTests {
 		@Override
 		public void mouseMove(MouseEvent e) {
 			mouseMove++;
-			System.out.println("MOVE");
+			System.out.println("MOVE"); //$NON-NLS-1$
 		}
 
 		@Override
@@ -534,17 +536,17 @@ public class TagCloudTests {
 
 		@Override
 		public void mouseEnter(MouseEvent e) {
-			mouseEnter++;
+
 		}
 
 		@Override
 		public void mouseExit(MouseEvent e) {
-			mouseExit++;
+
 		}
 
 		@Override
 		public void mouseHover(MouseEvent e) {
-			mouseHover++;
+
 		}
 
 		@Override
@@ -573,16 +575,16 @@ public class TagCloudTests {
 		cloud.notifyListeners(SWT.MouseUp, e);
 		cloud.notifyListeners(SWT.MouseDoubleClick, e);
 		cloud.notifyListeners(SWT.MouseDown, e);
-		Assert.assertEquals(1, ml.mouseUp);
-		Assert.assertEquals(1, ml.mouseDC);
-		Assert.assertEquals(1, ml.mouseDown);
+		assertEquals(1, ml.mouseUp);
+		assertEquals(1, ml.mouseDC);
+		assertEquals(1, ml.mouseDown);
 		cloud.removeMouseListener(ml);
 		cloud.notifyListeners(SWT.MouseUp, e);
 		cloud.notifyListeners(SWT.MouseDoubleClick, e);
 		cloud.notifyListeners(SWT.MouseDown, e);
-		Assert.assertEquals(1, ml.mouseUp);
-		Assert.assertEquals(1, ml.mouseDC);
-		Assert.assertEquals(1, ml.mouseDown);
+		assertEquals(1, ml.mouseUp);
+		assertEquals(1, ml.mouseDC);
+		assertEquals(1, ml.mouseDown);
 	}
 
 	@Test
@@ -598,10 +600,10 @@ public class TagCloudTests {
 		UniversalListener ml = new UniversalListener();
 		cloud.addMouseMoveListener(ml);
 		cloud.notifyListeners(SWT.MouseMove, e);
-		Assert.assertEquals(1, ml.mouseMove);
+		assertEquals(1, ml.mouseMove);
 		cloud.removeMouseMoveListener(ml);
 		cloud.notifyListeners(SWT.MouseMove, e);
-		Assert.assertEquals(1, ml.mouseMove);
+		assertEquals(1, ml.mouseMove);
 	}
 
 	// @Test
@@ -615,10 +617,10 @@ public class TagCloudTests {
 		UniversalListener ml = new UniversalListener();
 		cloud.addMouseWheelListener(ml);
 		cloud.notifyListeners(SWT.MouseWheel, new Event());
-		Assert.assertEquals(1, ml.mouseScrolled);
+		assertEquals(1, ml.mouseScrolled);
 		cloud.removeMouseWheelListener(ml);
 		cloud.notifyListeners(SWT.MouseWheel, new Event());
-		Assert.assertEquals(1, ml.mouseScrolled);
+		assertEquals(1, ml.mouseScrolled);
 	}
 
 	@Test
@@ -631,12 +633,12 @@ public class TagCloudTests {
 		UniversalListener sl = new UniversalListener();
 		cloud.addSelectionListener(sl);
 		cloud.setSelection(new HashSet<>(words));
-		Assert.assertEquals(1, sl.selection.size());
+		assertEquals(1, sl.selection.size());
 		cloud.setSelection(new HashSet<>());
-		Assert.assertEquals(0, sl.selection.size());
+		assertEquals(0, sl.selection.size());
 		cloud.removeSelectionListener(sl);
 		cloud.setSelection(new HashSet<>(words));
-		Assert.assertEquals(0, sl.selection.size());
+		assertEquals(0, sl.selection.size());
 
 	}
 

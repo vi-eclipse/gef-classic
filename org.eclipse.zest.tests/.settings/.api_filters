@@ -9,4 +9,45 @@
             </message_arguments>
         </filter>
     </resource>
+    <resource path="src/org/eclipse/zest/tests/LayoutAlgorithmTest.java" type="org.eclipse.zest.tests.LayoutAlgorithmTest">
+        <filter id="571519004">
+            <message_arguments>
+                <message_argument value="org.eclipse.zest.tests.LayoutAlgorithmTest.testWithConcurrentModification1()"/>
+                <message_argument value="Stub"/>
+            </message_arguments>
+        </filter>
+        <filter id="571519004">
+            <message_arguments>
+                <message_argument value="org.eclipse.zest.tests.LayoutAlgorithmTest.testWithConcurrentModification2()"/>
+                <message_argument value="Stub"/>
+            </message_arguments>
+        </filter>
+        <filter id="571519004">
+            <message_arguments>
+                <message_argument value="org.eclipse.zest.tests.LayoutAlgorithmTest.testWithConcurrentModification3()"/>
+                <message_argument value="Stub"/>
+            </message_arguments>
+        </filter>
+        <filter id="572522506">
+            <message_arguments>
+                <message_argument value="Zest1"/>
+                <message_argument value="LayoutAlgorithmTest"/>
+            </message_arguments>
+        </filter>
+        <filter id="640708718">
+            <message_arguments>
+                <message_argument value="Stub()"/>
+                <message_argument value="LayoutAlgorithmTest"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/zest/tests/examples/GraphSWTTests.java" type="org.eclipse.zest.tests.examples.GraphSWTTests">
+        <filter id="640712815">
+            <message_arguments>
+                <message_argument value="Graph"/>
+                <message_argument value="GraphSWTTests"/>
+                <message_argument value="getLayoutContext()"/>
+            </message_arguments>
+        </filter>
+    </resource>
 </component>

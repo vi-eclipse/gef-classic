@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011, 2024 Fabian Steeg and others.
+ * Copyright (c) 2011, 2025 Fabian Steeg and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -16,7 +16,6 @@ import org.eclipse.swt.widgets.Shell;
 
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.zest.core.viewers.GraphViewer;
 import org.eclipse.zest.core.viewers.IFigureProvider;
 import org.eclipse.zest.core.viewers.IGraphContentProvider;
@@ -112,14 +111,6 @@ public class IFigureProviderTests extends Assert {
 	private class DestinationContentProvider implements IGraphContentProvider {
 
 		@Override
-		public void dispose() {
-		}
-
-		@Override
-		public void inputChanged(Viewer arg0, Object arg1, Object arg2) {
-		}
-
-		@Override
 		public Object getDestination(Object r) {
 			if (r.equals("1to2")) { //$NON-NLS-1$
 				return "2"; //$NON-NLS-1$
@@ -148,14 +139,6 @@ public class IFigureProviderTests extends Assert {
 	private class SourceContentProvider implements IGraphContentProvider {
 
 		@Override
-		public void dispose() {
-		}
-
-		@Override
-		public void inputChanged(Viewer arg0, Object arg1, Object arg2) {
-		}
-
-		@Override
 		public Object getDestination(Object r) {
 			return null;
 		}
@@ -182,14 +165,6 @@ public class IFigureProviderTests extends Assert {
 	}
 
 	private class FullContentProvider implements IGraphContentProvider {
-
-		@Override
-		public void dispose() {
-		}
-
-		@Override
-		public void inputChanged(Viewer arg0, Object arg1, Object arg2) {
-		}
 
 		@Override
 		public Object getDestination(Object r) {

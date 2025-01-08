@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2024 Patrick Ziegler and others.
+ * Copyright (c) 2024, 2025 Patrick Ziegler and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -381,7 +381,7 @@ public class GraphSWTTests extends AbstractGraphTest {
 	 */
 	@Test
 	@Snippet(type = GraphSnippet8.class, field = "graph")
-	public void testGraphSnippet8() throws ReflectiveOperationException {
+	public void testGraphSnippet8() {
 		assertEquals(graph.getConnections().size(), 13);
 		assertNoOverlap(graph);
 

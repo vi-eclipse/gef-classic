@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011, 2024 Fabian Steeg and others.
+ * Copyright (c) 2011, 2025 Fabian Steeg and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -10,6 +10,11 @@
  * Contributors: Fabian Steeg - initial tests
  *******************************************************************************/
 package org.eclipse.zest.tests;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +41,6 @@ import org.eclipse.zest.core.widgets.GraphConnection;
 import org.eclipse.zest.core.widgets.GraphItem;
 import org.eclipse.zest.core.widgets.GraphNode;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -46,7 +50,7 @@ import org.junit.Test;
  * @author Fabian Steeg (fsteeg)
  *
  */
-public class GraphViewerTests extends Assert {
+public class GraphViewerTests {
 
 	private GraphViewer viewer;
 	private Shell shell;
@@ -68,7 +72,7 @@ public class GraphViewerTests extends Assert {
 	public void testDisposalWithDropTarget() {
 		new DropTarget(viewer.getGraphControl(), DND.DROP_MOVE | DND.DROP_COPY);
 		shell.dispose();
-		Assert.assertTrue("The viewer's graph control should be disposed", viewer.getControl().isDisposed()); //$NON-NLS-1$
+		assertTrue("The viewer's graph control should be disposed", viewer.getControl().isDisposed()); //$NON-NLS-1$
 	}
 
 	/**
@@ -80,7 +84,7 @@ public class GraphViewerTests extends Assert {
 		viewer.addDragSupport(DND.DROP_MOVE, new Transfer[] { TextTransfer.getInstance() },
 				new DelegatingDragAdapter());
 		shell.dispose();
-		Assert.assertTrue("The viewer's graph control should be disposed", viewer.getControl().isDisposed()); //$NON-NLS-1$
+		assertTrue("The viewer's graph control should be disposed", viewer.getControl().isDisposed()); //$NON-NLS-1$
 	}
 
 	/**
@@ -91,8 +95,8 @@ public class GraphViewerTests extends Assert {
 		Graph g = new Graph(shell, SWT.NONE);
 		new GraphConnection(g, SWT.NONE, new GraphNode(g, SWT.NONE), new GraphNode(g, SWT.NONE));
 		GraphViewer v = new GraphViewer(g);
-		Assert.assertEquals(2, v.getGraphControl().getNodes().size());
-		Assert.assertEquals(1, v.getGraphControl().getConnections().size());
+		assertEquals(2, v.getGraphControl().getNodes().size());
+		assertEquals(1, v.getGraphControl().getConnections().size());
 	}
 
 	/**
@@ -101,8 +105,8 @@ public class GraphViewerTests extends Assert {
 	 */
 	@Test
 	public void testFindGraphItem() {
-		Assert.assertNull("If an item cannot be found, the viewer should return null",
-				viewer.findGraphItem(Integer.valueOf(5)));
+		assertNull("If an item cannot be found, the viewer should return null", //$NON-NLS-1$
+				viewer.findGraphItem(5));
 	}
 
 	/**
@@ -186,42 +190,34 @@ public class GraphViewerTests extends Assert {
 	static class SampleGraphContentProvider implements IGraphContentProvider {
 
 		@Override
-		public void dispose() {
-		}
-
-		@Override
-		public void inputChanged(Viewer arg0, Object arg1, Object arg2) {
-		}
-
-		@Override
 		public Object getDestination(Object r) {
-			if (r.equals("1to2")) {
-				return "2";
+			if (r.equals("1to2")) { //$NON-NLS-1$
+				return "2"; //$NON-NLS-1$
 			}
-			if (r.equals("2to3")) {
-				return "3";
+			if (r.equals("2to3")) { //$NON-NLS-1$
+				return "3"; //$NON-NLS-1$
 			}
-			if (r.equals("3to1")) {
-				return "1";
+			if (r.equals("3to1")) { //$NON-NLS-1$
+				return "1"; //$NON-NLS-1$
 			}
 			return null;
 		}
 
 		@Override
 		public Object[] getElements(Object arg0) {
-			return new String[] { "1to2", "2to3", "3to1" };
+			return new String[] { "1to2", "2to3", "3to1" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
 
 		@Override
 		public Object getSource(Object r) {
-			if (r.equals("1to2")) {
-				return "1";
+			if (r.equals("1to2")) { //$NON-NLS-1$
+				return "1"; //$NON-NLS-1$
 			}
-			if (r.equals("2to3")) {
-				return "2";
+			if (r.equals("2to3")) { //$NON-NLS-1$
+				return "2"; //$NON-NLS-1$
 			}
-			if (r.equals("3to1")) {
-				return "3";
+			if (r.equals("3to1")) { //$NON-NLS-1$
+				return "3"; //$NON-NLS-1$
 			}
 			return null;
 		}
@@ -232,33 +228,21 @@ public class GraphViewerTests extends Assert {
 
 		@Override
 		public Object[] getConnectedTo(Object entity) {
-			if (entity.equals("1")) {
-				return new Object[] { "2" };
+			if (entity.equals("1")) { //$NON-NLS-1$
+				return new Object[] { "2" }; //$NON-NLS-1$
 			}
-			if (entity.equals("2")) {
-				return new Object[] { "3" };
+			if (entity.equals("2")) { //$NON-NLS-1$
+				return new Object[] { "3" }; //$NON-NLS-1$
 			}
-			if (entity.equals("3")) {
-				return new Object[] { "2" };
+			if (entity.equals("3")) { //$NON-NLS-1$
+				return new Object[] { "2" }; //$NON-NLS-1$
 			}
 			return null;
 		}
 
 		@Override
 		public Object[] getElements(Object inputElement) {
-			return new String[] { "1", "2", "3" };
-		}
-
-		public double getWeight(Object entity1, Object entity2) {
-			return 0;
-		}
-
-		@Override
-		public void dispose() {
-		}
-
-		@Override
-		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+			return new String[] { "1", "2", "3" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
 	}
 
