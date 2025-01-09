@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.name
 Bundle-SymbolicName: org.eclipse.draw2d;singleton:=true
-Bundle-Version: 3.18.100.qualifier
+Bundle-Version: 3.19.0.qualifier
 Bundle-Vendor: %Plugin.providerName
 Bundle-Localization: plugin
 Export-Package: org.eclipse.draw2d,
@@ -14,7 +14,7 @@ Export-Package: org.eclipse.draw2d,
  org.eclipse.draw2d.text,
  org.eclipse.draw2d.widgets,
  org.eclipse.draw2d.zoom
-Require-Bundle: org.eclipse.swt;bundle-version="[3.4.0,4.0.0)";visibility:=reexport
+Require-Bundle: org.eclipse.swt;bundle-version="[3.126.0,4.0.0)";visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Automatic-Module-Name: org.eclipse.draw2d
