@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2005-2007, 2024, CHISEL Group, University of Victoria, Victoria,
+ * Copyright 2005-2007, 2025, CHISEL Group, University of Victoria, Victoria,
  *                            BC, Canada and others.
  *
  * This program and the accompanying materials are made available under the
@@ -64,15 +64,20 @@ public class NestedGraphSnippet2 {
 		container4.setText(Messages.NestedGraphSnippet2_Container7);
 
 		/* Objects */
-		GraphNode object1 = new GraphNode(container1, ZestStyles.NODES_FISHEYE);
+		GraphNode object1 = new GraphNode(container1, SWT.NONE);
+		object1.setNodeStyle(ZestStyles.NODES_FISHEYE);
 		object1.setText(Messages.NestedGraphSnippet2_Node1);
-		GraphNode object2 = new GraphNode(container1, ZestStyles.NODES_FISHEYE);
+		GraphNode object2 = new GraphNode(container1, SWT.NONE);
+		object2.setNodeStyle(ZestStyles.NODES_FISHEYE);
 		object2.setText(Messages.NestedGraphSnippet2_Node2);
-		GraphNode object3 = new GraphNode(container2, ZestStyles.NODES_FISHEYE);
+		GraphNode object3 = new GraphNode(container2, SWT.NONE);
+		object3.setNodeStyle(ZestStyles.NODES_FISHEYE);
 		object3.setText(Messages.NestedGraphSnippet2_Node3);
-		GraphNode object4 = new GraphNode(container3, ZestStyles.NODES_FISHEYE);
+		GraphNode object4 = new GraphNode(container3, SWT.NONE);
+		object4.setNodeStyle(ZestStyles.NODES_FISHEYE);
 		object4.setText(Messages.NestedGraphSnippet2_Node4);
-		GraphNode object5 = new GraphNode(container4, ZestStyles.NODES_FISHEYE);
+		GraphNode object5 = new GraphNode(container4, SWT.NONE);
+		object5.setNodeStyle(ZestStyles.NODES_FISHEYE);
 		object5.setText(Messages.NestedGraphSnippet2_Node5);
 
 		/* Connections */

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2005, 2024, CHISEL Group, University of Victoria, Victoria, BC, Canada.
+ * Copyright 2005, 2025, CHISEL Group, University of Victoria, Victoria, BC, Canada.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -660,6 +660,7 @@ public class GraphNode extends GraphItem {
 	public void setNodeStyle(int nodeStyle) {
 		this.nodeStyle = nodeStyle;
 		this.cacheLabel = ((this.nodeStyle & ZestStyles.NODES_CACHE_LABEL) > 0) ? true : false;
+		updateFigureForModel(modelFigure);
 	}
 
 	/*

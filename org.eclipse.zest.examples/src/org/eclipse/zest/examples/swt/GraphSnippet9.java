@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2005-2007, 2024, CHISEL Group, University of Victoria, Victoria,
+ * Copyright 2005-2007, 2025, CHISEL Group, University of Victoria, Victoria,
  *                            BC, Canada and others.
  *
  * This program and the accompanying materials are made available under the
@@ -44,9 +44,10 @@ public class GraphSnippet9 {
 
 		graph = new Graph(shell, SWT.NONE);
 
-		GraphNode a = new GraphNode(graph, ZestStyles.CONNECTIONS_DIRECTED);
+		GraphNode a = new GraphNode(graph, SWT.NONE);
 		a.setText(Messages.Root);
 		GraphConnection connection = new GraphConnection(graph, SWT.NONE, a, a);
+		connection.setConnectionStyle(ZestStyles.CONNECTIONS_DIRECTED);
 		connection.setText(Messages.GraphSnippet9_Connection);
 		a.setLocation(100, 100);
 

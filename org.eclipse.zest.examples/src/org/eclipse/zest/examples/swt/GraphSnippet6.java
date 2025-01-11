@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2005-2007, 2024, CHISEL Group, University of Victoria, Victoria,
+ * Copyright 2005-2007, 2025, CHISEL Group, University of Victoria, Victoria,
  *                            BC, Canada and others.
  *
  * This program and the accompanying materials are made available under the
@@ -52,13 +52,16 @@ public class GraphSnippet6 {
 		g = new Graph(shell, SWT.NONE);
 		g.setConnectionStyle(ZestStyles.CONNECTIONS_DIRECTED);
 		for (int i = 0; i < 80; i++) {
-			GraphNode n1 = new GraphNode(g, ZestStyles.NODES_HIDE_TEXT | ZestStyles.NODES_FISHEYE);
+			GraphNode n1 = new GraphNode(g, SWT.NONE);
+			n1.setNodeStyle(ZestStyles.NODES_HIDE_TEXT | ZestStyles.NODES_FISHEYE);
 			n1.setText(Messages.Information);
 			n1.setImage(image1);
-			GraphNode n2 = new GraphNode(g, ZestStyles.NODES_HIDE_TEXT | ZestStyles.NODES_FISHEYE);
+			GraphNode n2 = new GraphNode(g, SWT.NONE);
+			n2.setNodeStyle(ZestStyles.NODES_HIDE_TEXT | ZestStyles.NODES_FISHEYE);
 			n2.setText(Messages.Warning);
 			n2.setImage(image2);
-			GraphNode n3 = new GraphNode(g, ZestStyles.NODES_HIDE_TEXT | ZestStyles.NODES_FISHEYE);
+			GraphNode n3 = new GraphNode(g, SWT.NONE);
+			n3.setNodeStyle(ZestStyles.NODES_HIDE_TEXT | ZestStyles.NODES_FISHEYE);
 			n3.setText(Messages.Error);
 			n3.setImage(image3);
 			new GraphConnection(g, SWT.NONE, n1, n2);

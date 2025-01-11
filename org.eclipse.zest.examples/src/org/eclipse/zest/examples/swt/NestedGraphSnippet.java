@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2005-2007, 2024, CHISEL Group, University of Victoria, Victoria,
+ * Copyright 2005-2007, 2025, CHISEL Group, University of Victoria, Victoria,
  *                            BC, Canada and others.
  *
  * This program and the accompanying materials are made available under the
@@ -64,28 +64,33 @@ public class NestedGraphSnippet {
 	}
 
 	public static void populateContainer(GraphContainer c, Graph g, int number, boolean radial) {
-		GraphNode a = new GraphNode(c, ZestStyles.NODES_FISHEYE | ZestStyles.NODES_HIDE_TEXT);
+		GraphNode a = new GraphNode(c, SWT.NONE);
+		a.setNodeStyle(ZestStyles.NODES_FISHEYE | ZestStyles.NODES_HIDE_TEXT);
 		a.setText(Messages.NestedGraphSnippet_Node1);
 		a.setImage(classImage);
 		for (int i = 0; i < 4; i++) {
-			GraphNode b = new GraphNode(c, ZestStyles.NODES_FISHEYE | ZestStyles.NODES_HIDE_TEXT);
+			GraphNode b = new GraphNode(c, SWT.NONE);
+			b.setNodeStyle(ZestStyles.NODES_FISHEYE | ZestStyles.NODES_HIDE_TEXT);
 			b.setText(Messages.NestedGraphSnippet_Node2);
 			b.setImage(classImage);
 			new GraphConnection(g, SWT.NONE, a, b);
 			for (int j = 0; j < 4; j++) {
-				GraphNode d = new GraphNode(c, ZestStyles.NODES_FISHEYE | ZestStyles.NODES_HIDE_TEXT);
+				GraphNode d = new GraphNode(c, SWT.NONE);
+				d.setNodeStyle(ZestStyles.NODES_FISHEYE | ZestStyles.NODES_HIDE_TEXT);
 				d.setText(Messages.NestedGraphSnippet_Node3);
 				d.setImage(classImage);
 				new GraphConnection(g, SWT.NONE, b, d);
 				if (number > 2) {
 					for (int k = 0; k < 4; k++) {
-						GraphNode e = new GraphNode(c, ZestStyles.NODES_FISHEYE | ZestStyles.NODES_HIDE_TEXT);
+						GraphNode e = new GraphNode(c, SWT.NONE);
+						e.setNodeStyle(ZestStyles.NODES_FISHEYE | ZestStyles.NODES_HIDE_TEXT);
 						e.setText(Messages.NestedGraphSnippet_Node4);
 						e.setImage(classImage);
 						new GraphConnection(g, SWT.NONE, d, e);
 						if (number > 3) {
 							for (int l = 0; l < 4; l++) {
-								GraphNode f = new GraphNode(c, ZestStyles.NODES_FISHEYE | ZestStyles.NODES_HIDE_TEXT);
+								GraphNode f = new GraphNode(c, SWT.NONE);
+								f.setNodeStyle(ZestStyles.NODES_FISHEYE | ZestStyles.NODES_HIDE_TEXT);
 								f.setText(Messages.NestedGraphSnippet_Node5);
 								f.setImage(classImage);
 								new GraphConnection(g, SWT.NONE, e, f);
