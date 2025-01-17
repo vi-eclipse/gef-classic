@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2024 Elias Volanakis and others.
+ * Copyright (c) 2004, 2025 Elias Volanakis and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -31,6 +31,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.util.TransferDragSourceListener;
 import org.eclipse.jface.util.TransferDropTargetListener;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
@@ -147,7 +148,8 @@ public class ShapesEditor extends GraphicalEditorWithFlyoutPalette {
 				// CombinatedTemplateCreationEntries
 				// from the palette into the editor
 				// @see ShapesEditor#createTransferDropTargetListener()
-				viewer.addDragSourceListener(new TemplateTransferDragSourceListener(viewer));
+				viewer.addDragSourceListener(
+						(TransferDragSourceListener) new TemplateTransferDragSourceListener(viewer));
 			}
 		};
 	}

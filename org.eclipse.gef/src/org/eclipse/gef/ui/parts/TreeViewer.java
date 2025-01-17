@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2010 IBM Corporation and others.
+ * Copyright (c) 2000, 2025 IBM Corporation and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -31,6 +31,8 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
+import org.eclipse.jface.util.TransferDragSourceListener;
+import org.eclipse.jface.util.TransferDropTargetListener;
 import org.eclipse.jface.viewers.StructuredSelection;
 
 import org.eclipse.draw2d.geometry.Point;
@@ -122,8 +124,8 @@ public class TreeViewer extends AbstractEditPartViewer {
 		dispatcher = new EventDispatcher();
 		RootTreeEditPart rep = new RootTreeEditPart();
 		setRootEditPart(rep);
-		addDragSourceListener(new TreeViewerTransferDragListener(this));
-		addDropTargetListener(new TreeViewerTransferDropListener(this));
+		addDragSourceListener((TransferDragSourceListener) new TreeViewerTransferDragListener(this));
+		addDropTargetListener((TransferDropTargetListener) new TreeViewerTransferDropListener(this));
 	}
 
 	/**

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2024 IBM Corporation and others.
+ * Copyright (c) 2000, 2025 IBM Corporation and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -24,6 +24,8 @@ import org.eclipse.swt.dnd.DropTargetListener;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.dnd.TransferData;
 
+import org.eclipse.jface.util.TransferDropTargetListener;
+
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 
@@ -45,7 +47,9 @@ import org.eclipse.gef.commands.Command;
  * behavior, such as interacting with the target EditPart or its ancestors to
  * achieve things like auto-scroll/auto-expose.
  */
-public abstract class AbstractTransferDropTargetListener implements TransferDropTargetListener {
+@SuppressWarnings("removal")
+public abstract class AbstractTransferDropTargetListener
+		implements TransferDropTargetListener, org.eclipse.gef.dnd.TransferDropTargetListener {
 
 	private DropTargetEvent currentEvent;
 	private AutoexposeHelper exposeHelper;

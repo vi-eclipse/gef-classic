@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2010 IBM Corporation and others.
+ * Copyright (c) 2000, 2025 IBM Corporation and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -100,7 +100,10 @@ public interface EditPartViewer extends org.eclipse.jface.viewers.ISelectionProv
 	 *
 	 * @param listener a drag source listener
 	 * @see #addDragSourceListener(TransferDragSourceListener)
+	 * @deprecated Use {@link #addDragSourceListener(TransferDragSourceListener)}
+	 *             instead. This method will be removed after the 2027-03 release.
 	 */
+	@Deprecated(since = "3.21", forRemoval = true)
 	void addDragSourceListener(org.eclipse.gef.dnd.TransferDragSourceListener listener);
 
 	/**
@@ -118,7 +121,10 @@ public interface EditPartViewer extends org.eclipse.jface.viewers.ISelectionProv
 	 *
 	 * @param listener the listener
 	 * @see #addDropTargetListener(TransferDropTargetListener)
+	 * @deprecated Use {@link #addDragSourceListener(TransferDragSourceListener)}
+	 *             instead. This method will be removed after the 2027-03 release.
 	 */
+	@Deprecated(since = "3.21", forRemoval = true)
 	void addDropTargetListener(org.eclipse.gef.dnd.TransferDropTargetListener listener);
 
 	/**
@@ -428,9 +434,10 @@ public interface EditPartViewer extends org.eclipse.jface.viewers.ISelectionProv
 	 *
 	 * @see #addDragSourceListener(TransferDragSourceListener)
 	 * @param listener the listener
-	 * @deprecated
+	 * @deprecated Use {@link #removeDragSourceListener(TransferDragSourceListener)}
+	 *             instead. This method will be removed after the 2027-03 release.
 	 */
-	@Deprecated
+	@Deprecated(since = "3.0", forRemoval = true)
 	void removeDragSourceListener(org.eclipse.gef.dnd.TransferDragSourceListener listener);
 
 	/**
@@ -448,9 +455,10 @@ public interface EditPartViewer extends org.eclipse.jface.viewers.ISelectionProv
 	 *
 	 * @see #addDropTargetListener(TransferDropTargetListener)
 	 * @param listener
-	 * @deprecated
+	 * @deprecated Use {@link #removeDropTargetListener(TransferDropTargetListener)}
+	 *             instead. This method will be removed after the 2027-03 release.
 	 */
-	@Deprecated
+	@Deprecated(since = "3.0", forRemoval = true)
 	void removeDropTargetListener(org.eclipse.gef.dnd.TransferDropTargetListener listener);
 
 	/**

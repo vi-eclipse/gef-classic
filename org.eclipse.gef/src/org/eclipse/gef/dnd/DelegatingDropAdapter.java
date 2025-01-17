@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2010 IBM Corporation and others.
+ * Copyright (c) 2000, 2025 IBM Corporation and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -39,8 +39,11 @@ public class DelegatingDropAdapter extends org.eclipse.jface.util.DelegatingDrop
 	 * Adds the given TransferDropTargetListener.
 	 *
 	 * @param listener the listener
-	 * @deprecated
+	 * @deprecated Use
+	 *             {@link #addDropTargetListener(org.eclipse.jface.util.TransferDropTargetListener)}
+	 *             instead. This method will be removed after the 2027-03 release.
 	 */
+	@Deprecated(since = "3.0", forRemoval = true)
 	public void addDropTargetListener(TransferDropTargetListener listener) {
 		super.addDropTargetListener(listener);
 	}
@@ -51,6 +54,7 @@ public class DelegatingDropAdapter extends org.eclipse.jface.util.DelegatingDrop
 	 * @return the merged Transfers from all listeners
 	 * @deprecated use getTransfers() instead
 	 */
+	@Deprecated(since = "3.0", forRemoval = true)
 	public Transfer[] getTransferTypes() {
 		return super.getTransfers();
 	}
@@ -59,7 +63,11 @@ public class DelegatingDropAdapter extends org.eclipse.jface.util.DelegatingDrop
 	 * Removes the given <code>TransferDropTargetListener</code>.
 	 *
 	 * @param listener the listener
+	 * @deprecated Use
+	 *             {@link #removeDropTargetListener(org.eclipse.jface.util.TransferDropTargetListener)}
+	 *             instead. This method will be removed after the 2027-03 release.
 	 */
+	@Deprecated(since = "3.21", forRemoval = true)
 	public void removeDropTargetListener(TransferDropTargetListener listener) {
 		super.removeDropTargetListener(listener);
 	}

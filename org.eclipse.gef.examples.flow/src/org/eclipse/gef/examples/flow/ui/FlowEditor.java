@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2003, 2024 IBM Corporation and others.
+ * Copyright (c) 2003, 2025 IBM Corporation and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -31,6 +31,8 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.util.TransferDragSourceListener;
+import org.eclipse.jface.util.TransferDropTargetListener;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
@@ -136,7 +138,8 @@ public class FlowEditor extends GraphicalEditorWithPalette {
 	@Override
 	protected void initializeGraphicalViewer() {
 		getGraphicalViewer().setContents(diagram);
-		getGraphicalViewer().addDropTargetListener(new TemplateTransferDropTargetListener(getGraphicalViewer()));
+		getGraphicalViewer().addDropTargetListener(
+				(TransferDropTargetListener) new TemplateTransferDropTargetListener(getGraphicalViewer()));
 
 	}
 
@@ -146,7 +149,8 @@ public class FlowEditor extends GraphicalEditorWithPalette {
 	@Override
 	protected void initializePaletteViewer() {
 		super.initializePaletteViewer();
-		getPaletteViewer().addDragSourceListener(new TemplateTransferDragSourceListener(getPaletteViewer()));
+		getPaletteViewer().addDragSourceListener(
+				(TransferDragSourceListener) new TemplateTransferDragSourceListener(getPaletteViewer()));
 	}
 
 	/**

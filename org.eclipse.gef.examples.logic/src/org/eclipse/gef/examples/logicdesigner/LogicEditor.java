@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2024 IBM Corporation and others.
+ * Copyright (c) 2000, 2025 IBM Corporation and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -55,6 +55,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.SafeRunnable;
+import org.eclipse.jface.util.TransferDragSourceListener;
 import org.eclipse.jface.util.TransferDropTargetListener;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
@@ -512,7 +513,8 @@ public class LogicEditor extends GraphicalEditorWithFlyoutPalette {
 			protected void configurePaletteViewer(PaletteViewer viewer) {
 				super.configurePaletteViewer(viewer);
 				viewer.setCustomizer(new LogicPaletteCustomizer());
-				viewer.addDragSourceListener(new TemplateTransferDragSourceListener(viewer));
+				viewer.addDragSourceListener(
+						(TransferDragSourceListener) new TemplateTransferDragSourceListener(viewer));
 			}
 
 			@Override

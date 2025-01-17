@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2010 IBM Corporation and others.
+ * Copyright (c) 2000, 2025 IBM Corporation and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -46,8 +46,11 @@ public class DelegatingDragAdapter extends org.eclipse.jface.util.DelegatingDrag
 	 * updated to reflect the change.
 	 *
 	 * @param listener the new listener
-	 * @deprecated
+	 * @deprecated Use
+	 *             {@link #addDragSourceListener(org.eclipse.jface.util.TransferDragSourceListener)}
+	 *             instead. This method will be removed after the 2027-03 release.
 	 */
+	@Deprecated(since = "3.0", forRemoval = true)
 	public void addDragSourceListener(TransferDragSourceListener listener) {
 		super.addDragSourceListener(listener);
 	}
@@ -56,8 +59,10 @@ public class DelegatingDragAdapter extends org.eclipse.jface.util.DelegatingDrag
 	 * Combines the <code>Transfer</code>s from every TransferDragSourceListener.
 	 *
 	 * @return the combined <code>Transfer</code>s
-	 * @deprecated call getTransfers() instead.
+	 * @deprecated call getTransfers() instead. This method will be removed after
+	 *             the 2027-03 release.
 	 */
+	@Deprecated(since = "3.0", forRemoval = true)
 	public Transfer[] getTransferTypes() {
 		return super.getTransfers();
 	}
@@ -67,8 +72,11 @@ public class DelegatingDragAdapter extends org.eclipse.jface.util.DelegatingDrag
 	 * updated to reflect the change.
 	 *
 	 * @param listener the listener being removed
-	 * @deprecated
+	 * @deprecated Use
+	 *             {@link #removeDragSourceListener(org.eclipse.jface.util.TransferDragSourceListener)}
+	 *             instead. This method will be removed after the 2027-03 release.
 	 */
+	@Deprecated(since = "3.0", forRemoval = true)
 	public void removeDragSourceListener(TransferDragSourceListener listener) {
 		super.removeDragSourceListener(listener);
 	}
