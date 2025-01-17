@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2010 IBM Corporation and others.
+ * Copyright (c) 2000, 2025 IBM Corporation and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -38,6 +38,8 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.commands.CommandStack;
+import org.eclipse.gef.commands.CommandStackEvent;
+import org.eclipse.gef.commands.CommandStackEventListener;
 import org.eclipse.gef.commands.CommandStackListener;
 import org.eclipse.gef.ui.actions.ActionBarContributor;
 import org.eclipse.gef.ui.actions.ActionRegistry;
@@ -60,7 +62,9 @@ import org.eclipse.gef.ui.properties.UndoablePropertySheetPage;
  *
  * @author hudsonr
  */
-public abstract class GraphicalEditor extends EditorPart implements CommandStackListener, ISelectionListener {
+@SuppressWarnings("removal")
+public abstract class GraphicalEditor extends EditorPart
+		implements CommandStackListener, CommandStackEventListener, ISelectionListener {
 
 	private DefaultEditDomain editDomain;
 	private GraphicalViewer graphicalViewer;
@@ -81,10 +85,26 @@ public abstract class GraphicalEditor extends EditorPart implements CommandStack
 	 * are updated.
 	 *
 	 * @param event the change event
+	 * @deprecated Use {@link #stackChanged(CommandStackEvent)} instead. This method
+	 *             will be removed after the 2027-03 release.
 	 */
 	@Override
+	@Deprecated(since = "3.21", forRemoval = true)
 	public void commandStackChanged(EventObject event) {
 		updateActions(stackActions);
+	}
+
+	/**
+	 * When the command stack changes, the actions interested in the command stack
+	 * are updated.
+	 *
+	 * @param event the change event
+	 */
+	@Override
+	public void stackChanged(CommandStackEvent event) {
+		if (event.isPostChangeEvent()) {
+			commandStackChanged(event);
+		}
 	}
 
 	/**

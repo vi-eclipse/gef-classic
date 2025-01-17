@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2010 IBM Corporation and others.
+ * Copyright (c) 2000, 2025 IBM Corporation and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -19,8 +19,10 @@ import java.util.EventObject;
  * has changed.
  *
  * @deprecated Use {@link CommandStackEventListener} instead and filter for
- *             post-events using {@link CommandStack#POST_MASK}.
+ *             post-events using {@link CommandStack#POST_MASK}. This interface
+ *             will be removed after the 2027-03 release.
  */
+@Deprecated(since = "3.11", forRemoval = true)
 public interface CommandStackListener {
 
 	/**

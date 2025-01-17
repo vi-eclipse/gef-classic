@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2024 IBM Corporation and others.
+ * Copyright (c) 2000, 2025 IBM Corporation and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -132,9 +132,10 @@ public class CommandStack {
 	 * The list of {@link CommandStackListener}s.
 	 *
 	 * @deprecated This field should not be referenced, use
-	 *             {@link #notifyListeners()}
+	 *             {@link #notifyListeners()}. This field will be removed after the
+	 *             2027-03 release.
 	 */
-	@Deprecated
+	@Deprecated(since = "3.11", forRemoval = true)
 	protected List<CommandStackListener> listeners = new CopyOnWriteArrayList<>();
 
 	private final Stack<Command> redoable = new Stack<>();
@@ -170,9 +171,9 @@ public class CommandStack {
 	 * @param listener the listener
 	 * @deprecated Use
 	 *             {@link #addCommandStackEventListener(CommandStackEventListener)}
-	 *             instead.
+	 *             instead. This method will be removed after the 2027-03 release.
 	 */
-	@Deprecated
+	@Deprecated(since = "3.11", forRemoval = true)
 	public void addCommandStackListener(CommandStackListener listener) {
 		listeners.add(listener);
 	}
@@ -342,9 +343,10 @@ public class CommandStack {
 	/**
 	 * Sends notification to all {@link CommandStackListener}s.
 	 *
-	 * @deprecated Use {@link #notifyListeners(Command, int)} instead.
+	 * @deprecated Use {@link #notifyListeners(Command, int)} instead. This method
+	 *             will be removed after the 2027-03 release.
 	 */
-	@Deprecated
+	@Deprecated(since = "3.11", forRemoval = true)
 	protected void notifyListeners() {
 		EventObject event = new EventObject(this);
 		listeners.forEach(listener -> listener.commandStackChanged(event));
@@ -397,9 +399,10 @@ public class CommandStack {
 	 * Removes the first occurrence of the specified listener.
 	 *
 	 * @param listener the listener
-	 * @deprecated Use {@link CommandStackEventListener} instead.
+	 * @deprecated Use {@link CommandStackEventListener} instead. This method will
+	 *             be removed after the 2027-03 release.
 	 */
-	@Deprecated
+	@Deprecated(since = "3.11", forRemoval = true)
 	public void removeCommandStackListener(CommandStackListener listener) {
 		listeners.remove(listener);
 	}

@@ -159,7 +159,7 @@ public class CommandStackTest {
 	}
 
 	@Test
-	@SuppressWarnings("static-method")
+	@SuppressWarnings({ "static-method", "removal" })
 	public void testConcurrentModification2() {
 		CommandStack stack = new CommandStack();
 		CommandStackListener listener = new CommandStackListener() {
