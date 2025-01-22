@@ -1,3 +1,17 @@
+/*******************************************************************************
+ * Copyright 2005, 2025 CHISEL Group, University of Victoria, Victoria, BC,
+ *                      Canada.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *     The Chisel Group, University of Victoria
+ *     Mateusz Matela <mateusz.matela@gmail.com> - [tree] Add Space Tree support to Graph widget - https://bugs.eclipse.org/bugs/show_bug.cgi?id=277534
+ ******************************************************************************/
 package org.eclipse.zest.examples.layouts;
 
 import org.eclipse.swt.SWT;
