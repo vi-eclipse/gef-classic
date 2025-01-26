@@ -85,4 +85,8 @@
          id="org.eclipse.gef.examples.ui.pde"
          version="0.0.0"/>
 
+   <plugin
+         id="org.eclipse.gef.examples"
+         version="0.0.0"/>
+
 </feature>
