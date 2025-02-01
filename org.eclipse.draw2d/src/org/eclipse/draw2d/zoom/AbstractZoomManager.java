@@ -57,6 +57,7 @@ public abstract class AbstractZoomManager {
 	private final List<ZoomListener> listeners = new CopyOnWriteArrayList<>();
 
 	private double multiplier = 1.0;
+	private double invisibleMultiplier = 1.0;
 	private final ScalableFigure pane;
 	private final Viewport viewport;
 	private double zoom = 1.0;
@@ -347,7 +348,7 @@ public abstract class AbstractZoomManager {
 	protected void primSetZoom(double zoom) {
 		Point newLocation = scrollPolicy.calcNewViewLocation(getViewport(), this.zoom, zoom);
 		this.zoom = zoom;
-		pane.setScale(zoom);
+		pane.setScale(zoom * invisibleMultiplier);
 		fireZoomChanged();
 		getViewport().validate();
 		setViewLocation(newLocation);
@@ -367,6 +368,11 @@ public abstract class AbstractZoomManager {
 	 */
 	public void setUIMultiplier(double multiplier) {
 		this.multiplier = multiplier;
+	}
+
+	public void setInvisibleUiMultiplier(double multiplier) {
+		this.invisibleMultiplier = multiplier;
+		primSetZoom(this.zoom);
 	}
 
 	/**

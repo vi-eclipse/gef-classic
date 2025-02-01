@@ -17,9 +17,11 @@ import java.beans.PropertyChangeListener;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 
 import org.eclipse.ui.IMemento;
@@ -27,6 +29,9 @@ import org.eclipse.ui.IMemento;
 import org.eclipse.draw2d.ColorProvider.SystemColorFactory;
 import org.eclipse.draw2d.FigureCanvas;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.IScalablePane;
+import org.eclipse.draw2d.MonitorAwareFigure;
+import org.eclipse.draw2d.StackLayout;
 
 import org.eclipse.gef.EditDomain;
 import org.eclipse.gef.EditPart;
@@ -127,7 +132,39 @@ public class PaletteViewer extends ScrollingGraphicalViewer {
 	 */
 	@Override
 	protected void createDefaultRoot() {
-		setRootEditPart(new SimpleRootEditPart());
+		setRootEditPart(new PaletteViewerRootEditPart());
+	}
+
+	@Override
+	public PaletteViewerRootEditPart getRootEditPart() {
+		return (PaletteViewerRootEditPart) super.getRootEditPart();
+	}
+
+	private final class PaletteViewerRootEditPart extends SimpleRootEditPart {
+		@Override
+		protected final IScalablePane createFigure() {
+			MonitorAwareFigure figure = new MonitorAwareFigure();
+			figure.setLayoutManager(new StackLayout());
+			return figure;
+		}
+
+		@Override
+		public IScalablePane getFigure() {
+			return (IScalablePane) super.getFigure();
+		}
+	}
+
+	@Override
+	public void setControl(Control control) {
+		super.setControl(control);
+		if (control != null) {
+			control.setData("STATIC_ZOOM", 100);
+			control.addListener(SWT.ZoomChanged, event -> {
+				int zoom = event.detail;
+				getRootEditPart().getFigure().setScale(zoom / 100d);
+			});
+			getRootEditPart().getFigure().setScale(control.nativeZoom / 100d);
+		}
 	}
 
 	private void disposeFont() {

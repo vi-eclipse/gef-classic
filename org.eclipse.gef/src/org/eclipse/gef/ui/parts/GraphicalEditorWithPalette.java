@@ -16,6 +16,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
 import org.eclipse.gef.DefaultEditDomain;
+import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.ui.palette.PaletteViewer;
 
@@ -52,17 +53,26 @@ public abstract class GraphicalEditorWithPalette extends GraphicalEditor {
 		initializePaletteViewer();
 	}
 
+	private void updateZoom(int zoom) {
+		ZoomManager manager = (ZoomManager) getGraphicalViewer().getProperty(ZoomManager.class.toString());
+		manager.setInvisibleUiMultiplier(zoom / 100d);
+	}
+
 	/**
 	 * @see org.eclipse.ui.IWorkbenchPart#createPartControl(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
+		parent.addListener(SWT.ZoomChanged, event -> {
+			updateZoom(event.detail);
+		});
 		Splitter splitter = new Splitter(parent, SWT.HORIZONTAL);
 		createPaletteViewer(splitter);
 		createGraphicalViewer(splitter);
 		splitter.maintainSize(getPaletteViewer().getControl());
 		splitter.setFixedSize(getInitialPaletteSize());
 		splitter.addFixedSizeChangeListener(evt -> handlePaletteResized(((Splitter) evt.getSource()).getFixedSize()));
+		updateZoom(parent.nativeZoom);
 	}
 
 	/**

@@ -17,6 +17,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
 import org.eclipse.gef.DefaultEditDomain;
+import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.gef.internal.InternalGEFPlugin;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.ui.palette.FlyoutPaletteComposite;
@@ -69,11 +70,19 @@ public abstract class GraphicalEditorWithFlyoutPalette extends GraphicalEditor {
 		return new CustomPalettePage(getPaletteViewerProvider());
 	}
 
+	private void updateZoom(int zoom) {
+		ZoomManager manager = (ZoomManager) getGraphicalViewer().getProperty(ZoomManager.class.toString());
+		manager.setInvisibleUiMultiplier(zoom / 100d);
+	}
+
 	/**
 	 * @see GraphicalEditor#createPartControl(Composite)
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
+		parent.addListener(SWT.ZoomChanged, event -> {
+			updateZoom(event.detail);
+		});
 		splitter = createPaletteComposite(parent);
 		super.createPartControl(splitter);
 		splitter.setGraphicalControl(getGraphicalControl());
@@ -81,6 +90,7 @@ public abstract class GraphicalEditorWithFlyoutPalette extends GraphicalEditor {
 			splitter.setExternalViewer(page.getPaletteViewer());
 			page = null;
 		}
+		updateZoom(parent.nativeZoom);
 	}
 
 	/**
