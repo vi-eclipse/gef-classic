@@ -17,6 +17,7 @@ import java.util.EventObject;
 import java.util.List;
 
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
@@ -153,7 +154,8 @@ public abstract class GraphicalEditor extends EditorPart
 	 */
 	protected void createGraphicalViewer(Composite parent) {
 		GraphicalViewer viewer = new ScrollingGraphicalViewer();
-		viewer.createControl(parent);
+		Control viewerControl = viewer.createControl(parent);
+		viewerControl.setData("STATIC_ZOOM", 100);
 		setGraphicalViewer(viewer);
 		configureGraphicalViewer();
 		hookGraphicalViewer();

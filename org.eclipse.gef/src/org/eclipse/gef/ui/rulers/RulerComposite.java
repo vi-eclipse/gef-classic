@@ -93,6 +93,7 @@ public class RulerComposite extends Composite {
 	 */
 	public RulerComposite(Composite parent, int style) {
 		super(parent, style);
+		setData("STATIC_ZOOM", 100);
 		addDisposeListener(e -> disposeResources());
 	}
 
@@ -319,14 +320,14 @@ public class RulerComposite extends Composite {
 		propertyListener = evt -> {
 			String property = evt.getPropertyName();
 			if (RulerProvider.PROPERTY_HORIZONTAL_RULER.equals(property)) {
-				setRuler((RulerProvider) diagramViewer.getProperty(RulerProvider.PROPERTY_HORIZONTAL_RULER),
-						PositionConstants.NORTH);
+					setRuler((RulerProvider) diagramViewer.getProperty(RulerProvider.PROPERTY_HORIZONTAL_RULER),
+							PositionConstants.NORTH);
 			} else if (RulerProvider.PROPERTY_VERTICAL_RULER.equals(property)) {
-				setRuler((RulerProvider) diagramViewer.getProperty(RulerProvider.PROPERTY_VERTICAL_RULER),
-						PositionConstants.WEST);
+					setRuler((RulerProvider) diagramViewer.getProperty(RulerProvider.PROPERTY_VERTICAL_RULER),
+							PositionConstants.WEST);
 			} else if (RulerProvider.PROPERTY_RULER_VISIBILITY.equals(property)) {
-				setRulerVisibility(((Boolean) diagramViewer.getProperty(RulerProvider.PROPERTY_RULER_VISIBILITY))
-						.booleanValue());
+					setRulerVisibility(((Boolean) diagramViewer.getProperty(RulerProvider.PROPERTY_RULER_VISIBILITY))
+							.booleanValue());
 			}
 		};
 		diagramViewer.addPropertyChangeListener(propertyListener);

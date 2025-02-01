@@ -275,7 +275,9 @@ public class FlyoutPaletteComposite extends Composite {
 	}
 
 	private Composite createSash() {
-		return new Sash(this, SWT.NONE);
+		Sash sash = new Sash(this, SWT.NONE);
+		sash.setData("STATIC_ZOOM", 100);
+		return sash;
 	}
 
 	private Control createTitle(Composite parent, boolean isHorizontal) {
