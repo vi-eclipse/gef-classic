@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006, 2010 IBM Corporation and others.
+ * Copyright (c) 2006, 2025 IBM Corporation and others.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -427,6 +427,18 @@ public class RectangleTest extends BaseTestCase {
 		rectangle1 = new Rectangle(10, 15, 70, 30);
 		assertSame(rectangle1, rectangle1.intersect(new Rectangle(0, 0, 5, 10)));
 		assertTrue(rectangle1.isEmpty());
+		//
+		rectangle1 = new Rectangle(100, 100, 300, 300);
+		rectangle2 = new Rectangle(200, 200, 100, 0);
+		assertEquals(200, 200, 100, 0, rectangle1.intersect(rectangle2));
+		//
+		rectangle1 = new Rectangle(100, 100, 300, 300);
+		rectangle2 = new Rectangle(200, 200, 0, 100);
+		assertEquals(200, 200, 0, 100, rectangle1.intersect(rectangle2));
+		//
+		rectangle1 = new Rectangle(100, 100, 300, 300);
+		rectangle2 = new Rectangle(200, 200, 0, 0);
+		assertEquals(200, 200, 0, 0, rectangle1.intersect(rectangle2));
 	}
 
 	@SuppressWarnings("static-method")

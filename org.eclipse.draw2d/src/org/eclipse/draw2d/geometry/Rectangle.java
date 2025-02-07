@@ -727,7 +727,7 @@ public class Rectangle implements Cloneable, java.io.Serializable, Translatable 
 		int x2 = Math.min(x + width, rect.x() + rect.width());
 		int y1 = Math.max(y, rect.y());
 		int y2 = Math.min(y + height, rect.y() + rect.height());
-		if (((x2 - x1) <= 0) || ((y2 - y1) <= 0)) {
+		if (((x2 - x1) < 0) || ((y2 - y1) < 0)) {
 			return setBounds(0, 0, 0, 0); // no intersection
 		}
 		return setBounds(x1, y1, x2 - x1, y2 - y1);
