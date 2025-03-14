@@ -15,11 +15,12 @@ package org.eclipse.draw2d;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontMetrics;
-import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.PaletteData;
 import org.eclipse.swt.graphics.RGB;
+import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.graphics.Transform;
 import org.eclipse.swt.widgets.Display;
 
 import org.eclipse.draw2d.geometry.Dimension;
@@ -47,18 +48,21 @@ public class ImageUtilities {
 
 		FontMetrics metrics = FigureUtilities.getFontMetrics(font);
 		Dimension strSize = FigureUtilities.getStringExtents(string, font);
-		Image srcImage = new Image(display, strSize.width,
-				metrics.getAscent() + metrics.getDescent() + metrics.getLeading());
-		GC gc = new GC(srcImage);
-		gc.setFont(font);
-		gc.setForeground(foreground);
-		gc.setBackground(background);
-		gc.fillRectangle(srcImage.getBounds());
-		gc.drawString(string, 0, 0);
-		Image result = createRotatedImage(srcImage);
-		gc.dispose();
-		srcImage.dispose();
-		return result;
+
+		// Image result = createRotatedImage(srcImage);
+		// srcImage.dispose();
+		return new Image(display, (gc, imageWidth, imageHeight) -> {
+			gc.setFont(font);
+			gc.setForeground(foreground);
+			gc.setBackground(background);
+			gc.fillRectangle(new Rectangle(0, 0, imageWidth, imageHeight));
+
+			Transform transform = new Transform(display);
+			transform.rotate(-90);
+			transform.translate(-imageHeight, 0);
+			gc.setTransform(transform);
+			gc.drawString(string, 0, 0);
+		}, metrics.getAscent() + metrics.getDescent() + metrics.getLeading(), strSize.width);
 	}
 
 	/**

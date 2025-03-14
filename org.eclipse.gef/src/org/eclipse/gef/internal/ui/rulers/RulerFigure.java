@@ -13,7 +13,7 @@
 package org.eclipse.gef.internal.ui.rulers;
 
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.internal.DPIUtil;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Figure;
@@ -79,7 +79,8 @@ public class RulerFigure extends Figure {
 			case RulerProvider.UNIT_PIXELS -> dpu = 1.0;
 			case RulerProvider.UNIT_CUSTOM -> dpu = rulerProvider.getCustomRulerDPU();
 			default -> {
-				dpu = transposer.t(new Dimension(Display.getCurrent().getDPI())).height;
+				int dpi = DPIUtil.mapZoomToDPI(DPIUtil.getDeviceZoom());
+				dpu = transposer.t(new Dimension(dpi, dpi)).height;
 				if (getUnit() == RulerProvider.UNIT_CENTIMETERS) {
 					dpu = dpu / 2.54;
 				}
