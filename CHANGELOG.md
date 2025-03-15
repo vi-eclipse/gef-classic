@@ -2,6 +2,21 @@
 
 ## Draw2D
 
+ - Following methods in PrintOperation have been deprecated for removal, with
+   the drop-in replacements:
+    - `PrinterGraphics getFreshPrinterGraphics()` &rarr; `Graphics getFreshGraphics()`
+    - `setupGraphicsForPage(PrinterGraphics)` &rarr; `setupGraphicsForPage(Graphics)`
+   
+   Subclasses may replace the default PrinterGraphics by overriding the
+   protected `createGraphics(SWTGraphics, Printer)` method.
+   ```java
+   PrintOperation op = new PrintFigureOperation(p, fig) {
+      @Override
+      protected Graphics createGraphics(SWTGraphics g, Printer p) {
+         ...
+      }
+   };
+   ```
 ## GEF
 
 ## Zest
